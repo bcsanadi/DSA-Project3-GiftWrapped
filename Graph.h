@@ -15,7 +15,10 @@ struct Node {
 };
 
 class Graph {
+private:
   map<string, Node> graph;
+
+public:
   void addNode(const string& label);
   void addEdge(const string& from, const string& to);
   vector<string> traverse(const vector<string>& userInput);
