@@ -15,7 +15,6 @@ struct Node {
 };
 
 class Graph {
-private:
   map<string, Node> graph;
 
 public:
