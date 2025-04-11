@@ -22,3 +22,8 @@ struct Product {
 };
 
 vector<Product> readProductsFromFile(string& filename);
+
+struct Category {
+    int id;
+    std::string category_name;
+};
