@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 struct Node {
   string label;
   vector<Node*> neighbors;

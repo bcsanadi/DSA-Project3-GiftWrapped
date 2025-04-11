@@ -8,4 +8,5 @@ include_directories(.)
 add_executable(DSA_Project3_GiftWrapped
     Graph.cpp
     Graph.h
-    main.cpp)
+    main.cpp
+        Product.h)
