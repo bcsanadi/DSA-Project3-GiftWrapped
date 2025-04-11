@@ -41,6 +41,7 @@ while(getline(file,line)){
   getline(ss, product.boughtInLastMonth, ',');
   products.push_back(product);
 }
+
 return products;
 
 };

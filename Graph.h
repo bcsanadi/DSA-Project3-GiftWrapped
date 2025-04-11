@@ -7,21 +7,22 @@
 #include <vector>
 #include <string>
 
+#include "Product.h"
+
 using namespace std;
 
 struct Node {
-  string value;
-  vector<Node*> neighbors;
+  Product product;
+  vector<Node*> relatedProducts;
 };
 
 class Graph {
   map<string, Node> graph;
+  map<string, vector<Product>> categoryBuckets;
 
 public:
-
   void addNode(const string& label);
   void addEdge(const string& from, const string& to);
-  Node* getNode(const string& label);
   vector<string> traverse(const vector<string>& userInput);
 };
 
