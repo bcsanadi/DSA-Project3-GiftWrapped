@@ -16,10 +16,12 @@ struct Product {
     string productURL;
     string stars;
     string reviews;
-    string price;
-    string listPrice;
+    double price;
+    double listPrice;
     string categoryID;
     string isBestSeller;
     string boughtInLastMonth;
 
 };
+
+vector<Product> readProductsFromFile(string& filename);

@@ -9,4 +9,5 @@ add_executable(DSA_Project3_GiftWrapped
     Graph.cpp
     Graph.h
     main.cpp
-        Product.h)
+        Product.h
+        ProductParsing.cpp)
