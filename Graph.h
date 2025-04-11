@@ -10,7 +10,7 @@
 using namespace std;
 
 struct Node {
-  string label;
+  string value;
   vector<Node*> neighbors;
 };
 
@@ -18,8 +18,10 @@ class Graph {
   map<string, Node> graph;
 
 public:
+
   void addNode(const string& label);
   void addEdge(const string& from, const string& to);
+  Node* getNode(const string& label);
   vector<string> traverse(const vector<string>& userInput);
 };
 
