@@ -1,12 +1,9 @@
-//
-// Created by Olivia Farino on 4/10/25.
-//
-
 #ifndef PRODUCT_H
 #define PRODUCT_H
 
 #endif //PRODUCT_H
 #include <string>
+#include <vector>
 using namespace std;
 
 struct Product {

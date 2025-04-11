@@ -1,11 +1,9 @@
-//
-// Created by Olivia Farino on 4/10/25.
-//
 #include "product.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <vector>
+
 using namespace std;
 
 vector<Product> readProductsFromFile(string& fileName){
