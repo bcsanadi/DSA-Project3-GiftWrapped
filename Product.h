@@ -20,6 +20,6 @@ struct Product {
     string boughtInLastMonth;
 };
 
-vector<Product> readProductsFromFile(string& filename);
+vector<Product> readProductsFromFile(const string& filename);
 
 #endif //PRODUCT_H

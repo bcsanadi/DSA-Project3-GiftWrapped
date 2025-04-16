@@ -6,7 +6,7 @@
 
 using namespace std;
 
-vector<Product> readProductsFromFile(string& fileName){
+vector<Product> readProductsFromFile(const string& fileName){
   vector<Product> products;
   ifstream file(fileName);
   if(!file.is_open()){

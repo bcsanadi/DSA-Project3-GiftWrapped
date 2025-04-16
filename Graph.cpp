@@ -16,9 +16,8 @@ vector<string> Graph::traverse(const vector<string> &userInput) {
 
     for (const string &userInput : userInput) {
         if (graph.find(userInput) != graph.end()) {
-            for (Node* node : graph[userInput].relatedProducts) {
+            for (auto node : graph[userInput].relatedProducts)
                 result.push_back(node->product.title);
-            }
         }
 
     }
