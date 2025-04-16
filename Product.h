@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+
 using namespace std;
 
 struct Product {
@@ -17,7 +18,6 @@ struct Product {
     string categoryID;
     string isBestSeller;
     string boughtInLastMonth;
-
 };
 
 vector<Product> readProductsFromFile(string& filename);

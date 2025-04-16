@@ -5,16 +5,20 @@
 #include "Graph.cpp"
 //#include <SFML/Graphics.hpp>
 
-
 using namespace std;
 
 int main() {
-    cout << "Hello World!" << endl;
+    vector<string> fileNames = {
+        "amazon_split_aa",
+        "amazon_split_ab",
+        "amazon_split_ac",
+        "amazon_split_ad"
+    };
 
-    string fileName = "amazon_split_aa";
-    vector<Product> products = readProductsFromFile(fileName);
+    vector<Product> products;
 
-    Graph graph;
-
-    return 0;
+    for (const auto& fileName : fileNames) {
+        vector<Product> partial = readProductsFromFile(fileName);
+        products.insert(products.end(), partial.begin(), partial.end());
+    }
 }

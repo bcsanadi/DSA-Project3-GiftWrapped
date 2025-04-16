@@ -5,7 +5,6 @@
 #include <map>
 #include <vector>
 #include <string>
-
 #include "Product.h"
 
 using namespace std;
@@ -13,9 +12,7 @@ using namespace std;
 struct Node {
   Product product;
   vector<Node*> relatedProducts;
-
   Node(const Product& product) : product(product) {}
-
 };
 
 class Graph {
