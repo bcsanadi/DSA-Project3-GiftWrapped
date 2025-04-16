@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>
-#include "ProductParsing.cpp"
 #include "Product.h"
 #include <iostream>
 
