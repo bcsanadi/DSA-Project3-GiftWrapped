@@ -1,6 +1,6 @@
 #ifndef PRODUCT_H
 #define PRODUCT_H
-
+#pragma once
 #include <string>
 #include <vector>
 

@@ -20,7 +20,7 @@ int main() {
     //     products.insert(products.end(), partial.begin(), partial.end());
     // }
 
-    sf::RenderWindow window(sf::VideoMode({800, 600}), "Product Graph");
+    sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
     window.setFramerateLimit(60);
 
     while (window.isOpen()){
@@ -29,7 +29,8 @@ int main() {
                 window.close();
         }
 
-        window.clear(sf::Color::White);
+        sf::Color pink = sf::Color(255, 197, 211);
+        window.clear(pink);
 
         // Draw your graph or sprites here
 
