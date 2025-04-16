@@ -2,6 +2,7 @@
 #include <sstream>
 #include "ProductParsing.cpp"
 #include "Product.h"
+#include "Graph.h"
 #include "Graph.cpp"
 //#include <SFML/Graphics.hpp>
 
