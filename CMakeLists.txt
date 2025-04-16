@@ -23,6 +23,3 @@ add_executable(DSA_Project3_GiftWrapped
 
 cmake_minimum_required(VERSION 3.28)
 project(CMakeSFMLProject LANGUAGES CXX)
-
-
-

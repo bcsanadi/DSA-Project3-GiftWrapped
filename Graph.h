@@ -12,6 +12,7 @@ using namespace std;
 struct Node {
   Product product;
   vector<Node*> relatedProducts;
+  Node() = default;
   Node(const Product& product) : product(product) {}
 };
 
