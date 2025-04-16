@@ -19,13 +19,11 @@ add_executable(DSA_Project3_GiftWrapped
     Graph.h
     main.cpp
         Product.h
-        ProductParsing.cpp)
+        ProductParsing.cpp
+        )
 
 cmake_minimum_required(VERSION 3.28)
 project(CMakeSFMLProject LANGUAGES CXX)
-target_compile_features(main PRIVATE cxx_std_17)
-target_link_libraries(main PRIVATE SFML::Graphics)
-
 
 
 
