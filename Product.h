@@ -18,6 +18,12 @@ struct Product {
     string categoryID;
     string isBestSeller;
     string boughtInLastMonth;
+
+    // fields based on user interface
+    string priceRange;
+    string ageGroup;
+    string interest;
+    string relationship;
 };
 
 #endif //PRODUCT_H
