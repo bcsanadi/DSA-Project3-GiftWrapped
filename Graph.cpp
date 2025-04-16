@@ -13,5 +13,14 @@ void Graph::addEdge(const string &from, const string &to) {
 
 vector<string> Graph::traverse(const vector<string> &userInput) {
     vector<string> result;
+
+    for (const string &userInput : userInput) {
+        if (graph.find(userInput) != graph.end()) {
+            for (Node* node : graph[userInput].relatedProducts) {
+                result.push_back(node->product.title);
+            }
+        }
+
+    }
     return result;
 }
