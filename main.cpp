@@ -20,13 +20,12 @@ int main() {
     //     products.insert(products.end(), partial.begin(), partial.end());
     // }
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Product Graph");
+    sf::RenderWindow window(sf::VideoMode({800, 600}), "Product Graph");
     window.setFramerateLimit(60);
 
     while (window.isOpen()){
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
+        while (const optional event = window.pollEvent()) {
+            if (event->is<sf::Event::Closed>())
                 window.close();
         }
 

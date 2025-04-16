@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 include(FetchContent)
 FetchContent_Declare(SFML
         GIT_REPOSITORY https://github.com/SFML/SFML.git
-        GIT_TAG 2.5.1
         GIT_SHALLOW ON
         EXCLUDE_FROM_ALL
         SYSTEM)
