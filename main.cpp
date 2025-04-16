@@ -12,6 +12,23 @@ int main() {
         "amazon_split_ac",
         "amazon_split_ad"
     };
+    sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
+    window.setFramerateLimit(60);
+
+sf::Font font;
+if (!font.openFromFile("../MagazineBold-3zolZ.ttf")) {
+    cout << "Error loading Magazine.ttf" << endl;
+}
+
+    sf::Text title(font);
+    title.setCharacterSize(50);
+    title.setString("Gift Wrapped");
+    sf::FloatRect bounds = title.getLocalBounds();
+    title.setOrigin({bounds.position.x + bounds.size.x/2.0f, bounds.position.y + bounds.size.x});
+    title.setStyle(sf::Text::Bold);
+    title.setPosition({500, 400});
+    title.setFillColor(sf::Color::White);
+
 
     vector<Product> products;
 
@@ -20,8 +37,7 @@ int main() {
     //     products.insert(products.end(), partial.begin(), partial.end());
     // }
 
-    sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
-    window.setFramerateLimit(60);
+
 
     while (window.isOpen()){
         while (const optional event = window.pollEvent()) {
@@ -29,11 +45,12 @@ int main() {
                 window.close();
         }
 
+
         sf::Color pink = sf::Color(255, 197, 211);
         window.clear(pink);
 
         // Draw your graph or sprites here
-
+        window.draw(title);
         window.display();
     }
     return 0;
