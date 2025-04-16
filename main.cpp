@@ -1,10 +1,10 @@
+#include <SFML/Graphics.hpp>
 #include <sstream>
 #include "ProductParsing.cpp"
 #include "Product.h"
-#include <SFML/Graphics.hpp>
+#include <iostream>
 
 using namespace std;
-using namespace sf;
 
 int main() {
     vector<string> fileNames = {
@@ -21,17 +21,17 @@ int main() {
     //     products.insert(products.end(), partial.begin(), partial.end());
     // }
 
-    RenderWindow window(VideoMode(800, 600), "Product Graph");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Product Graph");
     window.setFramerateLimit(60);
 
-    while (window.isOpen()) {
-        Event event;
+    while (window.isOpen()){
+        sf::Event event;
         while (window.pollEvent(event)) {
-            if (event.type == Event::Closed)
+            if (event.type == sf::Event::Closed)
                 window.close();
         }
 
-        window.clear(Color::White);
+        window.clear(sf::Color::White);
 
         // Draw your graph or sprites here
 
