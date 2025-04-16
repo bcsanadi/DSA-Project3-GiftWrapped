@@ -1,8 +1,9 @@
 #include "Graph.h"
 
-void Graph::addNode(const string &value) {
-    if (graph.find(value) == graph.end())
-        graph[value] = Node{value};
+void Graph::addNode(const Product& product) {
+    if (graph.find(product.title) == graph.end()) {
+        graph[product.title] = Node{product};
+    }
 }
 
 void Graph::addEdge(const string &from, const string &to) {

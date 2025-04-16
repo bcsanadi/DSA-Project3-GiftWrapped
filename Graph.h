@@ -13,6 +13,9 @@ using namespace std;
 struct Node {
   Product product;
   vector<Node*> relatedProducts;
+
+  Node(const Product& product) : product(product) {}
+
 };
 
 class Graph {
@@ -20,7 +23,7 @@ class Graph {
   map<string, vector<Product>> categoryBuckets;
 
 public:
-  void addNode(const string& label);
+  void addNode(const Product& product);
   void addEdge(const string& from, const string& to);
   vector<string> traverse(const vector<string>& userInput);
 };
