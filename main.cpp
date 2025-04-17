@@ -193,9 +193,10 @@ int main() {
                                         Results.close();
                                     }
                                 }
-                                window.clear(pink);
-
-                                window.display();
+                                Results.clear(pink);
+                                Results.draw(title);
+                                Results.draw(giftIcon);
+                                Results.display();
                             }
                         }
                         for (auto& category : categories) {
