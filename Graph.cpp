@@ -8,7 +8,7 @@ void Graph::addNode(const Product& product) {
 
 void Graph::addEdge(const string &from, const string &to) {
     if (graph.find(from) != graph.end() && graph.find(to) != graph.end()) {
-        for (auto* neighbor : graph[from].relatedProducts) {
+        for (const auto& neighbor : graph[from].relatedProducts) {
             if (neighbor == &graph[to]) {
                 return;
             }
@@ -20,7 +20,7 @@ void Graph::addEdge(const string &from, const string &to) {
 vector<string> Graph::traverse(const vector<string> &userInput) {
     vector<string> result;
 
-    for (const string &title : userInput) {
+    for (const string& title : userInput) {
         if (graph.find(title) != graph.end()) {
             for (auto node : graph[title].relatedProducts)
                 result.push_back(node->product.title);

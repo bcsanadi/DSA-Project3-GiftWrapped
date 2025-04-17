@@ -134,7 +134,7 @@ int main() {
     }
     sf::Text chooseText(font);
     chooseText.setCharacterSize(25);
-    chooseText.setString("Choose one option from each category");
+    chooseText.setString("Choose one option from each category!");
     sf::FloatRect chooseBounds = chooseText.getLocalBounds();
     chooseText.setOrigin({chooseBounds.position.x + chooseBounds.size.x/2.0f, chooseBounds.position.y + chooseBounds.size.x});
     chooseText.setStyle(sf::Text::Bold);
