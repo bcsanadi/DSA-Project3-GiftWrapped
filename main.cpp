@@ -6,6 +6,15 @@
 
 using namespace std;
 
+sf::Sprite ReadInSprite(sf::Texture& texture, const std::filesystem::path& filename, int x, int y) {
+    if (!texture.loadFromFile(filename)) {
+        throw std::runtime_error("Failed to load texture: " + filename.string());
+    }
+    sf::Sprite sprite(texture);
+    sprite.setPosition(sf::Vector2f(x, y));
+    return sprite;
+}
+
 struct Button {
     sf::RectangleShape buttonBox;
     sf::Text label;
@@ -101,20 +110,35 @@ int main() {
     sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
     window.setFramerateLimit(60);
 
-sf::Font font;
-if (!font.openFromFile("../MagazineBold-3zolZ.ttf")) {
-    cout << "Error loading Magazine.ttf" << endl;
-}
+    sf::Font titleFont;
+    if (!titleFont.openFromFile("../Title2.ttf")) {
+        cout << "Error loading Title2.ttf" << endl;
+    }
+    sf::Texture giftTexture;
+    sf::Sprite giftIcon = ReadInSprite(giftTexture, "../Gifty.png", 410, 90);
+    giftIcon.setScale(sf::Vector2f(0.09f, 0.09f));
 
-    sf::Text title(font);
-    title.setCharacterSize(50);
+    sf::Text title(titleFont);
+    title.setCharacterSize(75);
     title.setString("Gift Wrapped");
     sf::FloatRect bounds = title.getLocalBounds();
     title.setOrigin({bounds.position.x + bounds.size.x/2.0f, bounds.position.y + bounds.size.x});
     title.setStyle(sf::Text::Bold);
-    title.setPosition({500, 400});
+    title.setPosition({500, 440});
     title.setFillColor(sf::Color::White);
 
+    sf::Font font;
+    if (!font.openFromFile("../Options.ttf")) {
+        cout << "Error loading Options.ttf" << endl;
+    }
+    sf::Text chooseText(font);
+    chooseText.setCharacterSize(25);
+    chooseText.setString("Choose one option from each category");
+    sf::FloatRect chooseBounds = chooseText.getLocalBounds();
+    chooseText.setOrigin({chooseBounds.position.x + chooseBounds.size.x/2.0f, chooseBounds.position.y + chooseBounds.size.x});
+    chooseText.setStyle(sf::Text::Bold);
+    chooseText.setPosition({500, 800});
+    chooseText.setFillColor(sf::Color::Black);
 
 
     //Placeholder text
@@ -158,8 +182,10 @@ if (!font.openFromFile("../MagazineBold-3zolZ.ttf")) {
         sf::Color pink = sf::Color(255, 197, 211);
         window.clear(pink);
 
-        // Draw your graph or sprites here
+
         window.draw(title);
+        window.draw(giftIcon);
+        window.draw(chooseText);
         for (auto& category : categories) {
             category.draw(window);
         }
