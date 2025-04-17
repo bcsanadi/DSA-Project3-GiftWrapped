@@ -5,6 +5,16 @@
 
 using namespace std;
 
+sf::Sprite ReadInSprite(sf::Texture& texture, const std::filesystem::path& filename, int x, int y) {
+    if (!texture.loadFromFile(filename)) {
+        throw std::runtime_error("Failed to load texture: " + filename.string());
+    }
+    sf::Sprite sprite(texture);
+    sprite.setPosition(sf::Vector2f(x, y));
+    return sprite;
+}
+
+
 int main() {
     vector<string> fileNames = {
         "amazon_split_aa",
@@ -15,13 +25,19 @@ int main() {
     sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
     window.setFramerateLimit(60);
 
+   // sf::RenderWindow generatedWindow(sf::VideoMode({1000, 800}), "Gift Wrapped");
+   // generatedWindow.setFramerateLimit(60);
+
 sf::Font font;
 if (!font.openFromFile("../MagazineBold-3zolZ.ttf")) {
     cout << "Error loading Magazine.ttf" << endl;
 }
+    sf::Texture giftTexture;
+    sf::Sprite giftIcon = ReadInSprite(giftTexture, "../Gifty.png", 410, 90);
+    giftIcon.setScale(sf::Vector2f(0.09f, 0.09f));
 
     sf::Text title(font);
-    title.setCharacterSize(50);
+    title.setCharacterSize(60);
     title.setString("Gift Wrapped");
     sf::FloatRect bounds = title.getLocalBounds();
     title.setOrigin({bounds.position.x + bounds.size.x/2.0f, bounds.position.y + bounds.size.x});
@@ -49,8 +65,8 @@ if (!font.openFromFile("../MagazineBold-3zolZ.ttf")) {
         sf::Color pink = sf::Color(255, 197, 211);
         window.clear(pink);
 
-        // Draw your graph or sprites here
         window.draw(title);
+        window.draw(giftIcon);
         window.display();
     }
     return 0;
