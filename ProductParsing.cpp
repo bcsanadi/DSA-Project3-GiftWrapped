@@ -108,7 +108,7 @@ vector<Product> readProductsFromFile(const string& fileName){
             product.interest = "Unknown";
         }
 
-        // placeholder
+        // placeholder for relationship
         product.relationship = "Friend";
 
 
