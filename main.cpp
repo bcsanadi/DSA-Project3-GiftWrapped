@@ -144,13 +144,18 @@ int main() {
 
     //Placeholder text
     vector<Category> categories;
-    vector<string> interests = {"Books", "Tech", "Fashion"};
+
+    vector<string> interests = {"Crafts", "Cars", "Beauty/Wellness", "Electronics", "Travel","Industrial",
+        "Home Decor/Care", "Home Improvement","Pets", "Sports/Outdoors", "Health and Wellness"};
     categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 325));
-    vector<string> prices = {"$0-25", "$25-50", "$50-100"};
+
+    vector<string> prices = {"$Under $10", "Under $25", "Under $50", "Under $100", "under $200", "Any Price"};
     categories.emplace_back("Price Range", prices, font, sf::Vector2f(300, 325));
-    vector<string> ages = {"Kids", "Teens", "Adults"};
+
+    vector<string> ages = {"Baby", "Toddler", "Child", "Young Adult", "Adult", "Senior"};
     categories.emplace_back("Age Group", ages, font, sf::Vector2f(500, 325));
-    vector<string> relations = {"Family", "Friend", "Partner"};
+
+    vector<string> relations = {"Friend", "Family", "Significant Other", "Coworker"};
     categories.emplace_back("Relationship", relations, font, sf::Vector2f(700, 325));
     //vector<Product> products;
 
