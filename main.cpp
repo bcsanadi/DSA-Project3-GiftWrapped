@@ -46,8 +46,9 @@ struct Button {
 
     void setSelected(bool state) {
         selected = state;
+        sf::Color lightBlue = sf::Color(180, 225, 255);
         if (selected) {
-            buttonBox.setFillColor(sf::Color::Black);
+            buttonBox.setFillColor(lightBlue);
         } else {
             buttonBox.setFillColor(sf::Color::White);
         }
@@ -144,13 +145,13 @@ int main() {
     //Placeholder text
     vector<Category> categories;
     vector<string> interests = {"Books", "Tech", "Fashion"};
-    categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 150));
+    categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 325));
     vector<string> prices = {"$0-25", "$25-50", "$50-100"};
-    categories.emplace_back("Price Range", prices, font, sf::Vector2f(300, 150));
+    categories.emplace_back("Price Range", prices, font, sf::Vector2f(300, 325));
     vector<string> ages = {"Kids", "Teens", "Adults"};
-    categories.emplace_back("Age Group", ages, font, sf::Vector2f(500, 150));
+    categories.emplace_back("Age Group", ages, font, sf::Vector2f(500, 325));
     vector<string> relations = {"Family", "Friend", "Partner"};
-    categories.emplace_back("Relationship", relations, font, sf::Vector2f(700, 150));
+    categories.emplace_back("Relationship", relations, font, sf::Vector2f(700, 325));
     //vector<Product> products;
 
     // for (const auto& fileName : fileNames) {
