@@ -148,16 +148,16 @@ int main() {
 
     vector<string> interests = {"Crafts", "Cars", "Beauty/Wellness", "Electronics", "Travel","Industrial",
         "Home Decor/Care", "Home Improvement","Pets", "Sports/Outdoors", "Health and Wellness"};
-    categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 325));
+    categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 300));
 
-    vector<string> prices = {"$Under $10", "Under $25", "Under $50", "Under $100", "under $200", "Any Price"};
-    categories.emplace_back("Price Range", prices, font, sf::Vector2f(300, 325));
+    vector<string> prices = {"Under $10", "Under $25", "Under $50", "Under $100", "Under $200", "Any Price"};
+    categories.emplace_back("Price Range", prices, font, sf::Vector2f(300, 300));
 
-    vector<string> ages = {"Baby", "Toddler", "Child", "Young Adult", "Adult", "Senior"};
-    categories.emplace_back("Age Group", ages, font, sf::Vector2f(500, 325));
+    vector<string> ages = {"Baby", "Toddler", "Child", "Teen/Young Adult", "Adult", "Senior"};
+    categories.emplace_back("Age Group", ages, font, sf::Vector2f(500, 300));
 
     vector<string> relations = {"Friend", "Family", "Significant Other", "Coworker"};
-    categories.emplace_back("Relationship", relations, font, sf::Vector2f(700, 325));
+    categories.emplace_back("Relationship", relations, font, sf::Vector2f(700, 300));
     //vector<Product> products;
 
     // for (const auto& fileName : fileNames) {
