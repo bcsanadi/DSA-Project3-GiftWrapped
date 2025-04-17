@@ -20,10 +20,10 @@ struct Button {
     sf::Text label;
     bool selected = false;
 
-    Button(const string& text, const sf::Font& font, const sf::Vector2f size, sf::Vector2f position) : label(font){
+    Button(const string& text, const sf::Font& font, const sf::Vector2f size, sf::Vector2f position, sf::Color color) : label(font){
         buttonBox.setSize(size);
         buttonBox.setPosition(position);
-        buttonBox.setFillColor(sf::Color::White);
+        buttonBox.setFillColor(color);
         buttonBox.setOutlineColor(sf::Color::Black);
         buttonBox.setOutlineThickness(3);
 
@@ -32,7 +32,7 @@ struct Button {
         label.setCharacterSize(15);
         label.setFillColor(sf::Color::Black);
         sf::FloatRect textBounds = label.getGlobalBounds();
-        label.setPosition(position + size / 50.f);
+        label.setPosition(position + size / 5.f + sf::Vector2f(-28.f, 6.f));
     }
 
     void draw(sf::RenderWindow& window) {
@@ -73,7 +73,7 @@ struct Category {
 
         for(size_t i = 0; i < values.size(); i++) {
             sf::Vector2f buttonPos = {position.x, position.y + 40 + i * (buttonSize.y + spacing)};
-            buttons.emplace_back(values[i], font, buttonSize, buttonPos);
+            buttons.emplace_back(values[i], font, buttonSize, buttonPos, sf::Color::White);
         }
     }
     void draw(sf::RenderWindow& window) {
@@ -166,9 +166,10 @@ int main() {
     // }
 
     sf::Color pink = sf::Color(255, 197, 211);
+    sf::Color purple = sf::Color(219, 165, 255);
 
 
-    Button generateButton("Generate Results!", font, {150, 50}, {420, 670});
+    Button generateButton("Generate Results!", font, {160, 60}, {420, 670}, purple);
     while (window.isOpen()){
         while (const optional event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>()) {
