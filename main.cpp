@@ -29,20 +29,20 @@ int main() {
    // generatedWindow.setFramerateLimit(60);
 
 sf::Font font;
-if (!font.openFromFile("../MagazineBold-3zolZ.ttf")) {
-    cout << "Error loading Magazine.ttf" << endl;
+if (!font.openFromFile("../Title2.ttf")) {
+    cout << "Error loading Title2.ttf" << endl;
 }
     sf::Texture giftTexture;
     sf::Sprite giftIcon = ReadInSprite(giftTexture, "../Gifty.png", 410, 90);
     giftIcon.setScale(sf::Vector2f(0.09f, 0.09f));
 
     sf::Text title(font);
-    title.setCharacterSize(60);
+    title.setCharacterSize(75);
     title.setString("Gift Wrapped");
     sf::FloatRect bounds = title.getLocalBounds();
     title.setOrigin({bounds.position.x + bounds.size.x/2.0f, bounds.position.y + bounds.size.x});
     title.setStyle(sf::Text::Bold);
-    title.setPosition({500, 400});
+    title.setPosition({500, 440});
     title.setFillColor(sf::Color::White);
 
 
