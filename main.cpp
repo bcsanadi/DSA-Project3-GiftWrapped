@@ -32,7 +32,7 @@ struct Button {
         label.setCharacterSize(15);
         label.setFillColor(sf::Color::Black);
         sf::FloatRect textBounds = label.getGlobalBounds();
-        label.setPosition(position + size / 2.f);
+        label.setPosition(position + size / 50.f);
     }
 
     void draw(sf::RenderWindow& window) {
@@ -110,6 +110,7 @@ int main() {
     };
     sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
     window.setFramerateLimit(60);
+    sf::RenderWindow Results;
 
     sf::Font titleFont;
     if (!titleFont.openFromFile("../Title2.ttf")) {
@@ -164,8 +165,10 @@ int main() {
     //     products.insert(products.end(), partial.begin(), partial.end());
     // }
 
+    sf::Color pink = sf::Color(255, 197, 211);
 
 
+    Button generateButton("Generate Results!", font, {150, 50}, {420, 670});
     while (window.isOpen()){
         while (const optional event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>()) {
@@ -176,7 +179,23 @@ int main() {
             const sf::Event::MouseButtonPressed* mouseEvent = event->getIf<sf::Event::MouseButtonPressed>();
                 if (mouseEvent) {
                     if (mouseEvent->button == sf::Mouse::Button::Left) {
-                    sf::Vector2f mousePos = window.mapPixelToCoords(mouseEvent->position);
+                        sf::Vector2f mousePos = window.mapPixelToCoords(mouseEvent->position);
+                        if (generateButton.contains(mousePos)) {
+                            cout << "Generate button clicked!" << endl;
+                            window.close();
+                            Results.create(sf::VideoMode({1000, 800}), "Gift Wrapped");
+                            while (Results.isOpen()) {
+
+                                while (const optional event = Results.pollEvent()) {
+                                    if (event->is<sf::Event::Closed>()) {
+                                        Results.close();
+                                    }
+                                }
+                                window.clear(pink);
+
+                                window.display();
+                            }
+                        }
                         for (auto& category : categories) {
                             category.handleClick(mousePos);
                         }
@@ -185,13 +204,13 @@ int main() {
             }
         }
 
-        sf::Color pink = sf::Color(255, 197, 211);
         window.clear(pink);
 
 
         window.draw(title);
         window.draw(giftIcon);
         window.draw(chooseText);
+        generateButton.draw(window);
         for (auto& category : categories) {
             category.draw(window);
         }
