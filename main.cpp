@@ -117,6 +117,7 @@ if (!font.openFromFile("../MagazineBold-3zolZ.ttf")) {
 
 
 
+    //Placeholder text
     vector<Category> categories;
     vector<string> interests = {"Books", "Tech", "Fashion"};
     categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 150));
