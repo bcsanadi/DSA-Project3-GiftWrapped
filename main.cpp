@@ -67,6 +67,9 @@ struct Category {
         title.setString(name);
         title.setCharacterSize(24);
         title.setPosition(position);
+        sf::Color purple = sf::Color(119, 0, 200);
+        title.setFillColor(purple);
+
 
         sf::Vector2f buttonSize = {189, 30};
         float spacing = 10;
