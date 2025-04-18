@@ -121,7 +121,7 @@ int main() {
         cout << "Error loading Title2.ttf" << endl;
     }
     sf::Texture giftTexture;
-    sf::Sprite giftIcon = ReadInSprite(giftTexture, "../Gifty.png", 410, 90);
+    sf::Sprite giftIcon = ReadInSprite(giftTexture, "../Gifty.png", 410, 80);
     giftIcon.setScale(sf::Vector2f(0.09f, 0.09f));
 
     sf::Text title(titleFont);
@@ -130,7 +130,7 @@ int main() {
     sf::FloatRect bounds = title.getLocalBounds();
     title.setOrigin({bounds.position.x + bounds.size.x/2.0f, bounds.position.y + bounds.size.x});
     title.setStyle(sf::Text::Bold);
-    title.setPosition({500, 440});
+    title.setPosition({500, 430});
     title.setFillColor(sf::Color::White);
 
     sf::Font font;
@@ -143,7 +143,7 @@ int main() {
     sf::FloatRect chooseBounds = chooseText.getLocalBounds();
     chooseText.setOrigin({chooseBounds.position.x + chooseBounds.size.x/2.0f, chooseBounds.position.y + chooseBounds.size.x});
     chooseText.setStyle(sf::Text::Bold);
-    chooseText.setPosition({500, 800});
+    chooseText.setPosition({500, 775});
     chooseText.setFillColor(sf::Color::Black);
 
 
@@ -151,18 +151,18 @@ int main() {
     vector<Category> categories;
 
     vector<string> interests = {"Cars", "Crafts", "Beauty", "Electronics","Fashion", "Health & Wellness", "Home Decor/Care", "Home Improvement", "Industrial","Pets", "Sports/Outdoors", "Travel"};
-    categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 300));
+    categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 275));
 
     vector<string> prices = {"Under $10", "Under $25", "Under $50", "Under $100", "Under $200", "Any Price"};
-    categories.emplace_back("Price Range", prices, font, sf::Vector2f(300, 300));
+    categories.emplace_back("Price Range", prices, font, sf::Vector2f(300, 275));
 
     vector<string> ages = {"Baby", "Toddler", "Child", "Teen/Young Adult", "Adult", "Senior"};
-    categories.emplace_back("Age Group", ages, font, sf::Vector2f(500, 300));
+    categories.emplace_back("Age Group", ages, font, sf::Vector2f(500, 275));
 
     vector<string> relations = {"Friend", "Sibling", "Mother", "Father", "Sister", "Son", "Daughter",
         "Significant Other", "Coworker"};
 
-    categories.emplace_back("Relationship", relations, font, sf::Vector2f(700, 300));
+    categories.emplace_back("Relationship", relations, font, sf::Vector2f(700, 275));
     //vector<Product> products;
 
     // for (const auto& fileName : fileNames) {
