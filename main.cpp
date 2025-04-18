@@ -160,7 +160,9 @@ int main() {
     vector<string> ages = {"Baby", "Toddler", "Child", "Teen/Young Adult", "Adult", "Senior"};
     categories.emplace_back("Age Group", ages, font, sf::Vector2f(500, 300));
 
-    vector<string> relations = {"Friend", "Family", "Significant Other", "Coworker"};
+    vector<string> relations = {"Friend", "Sibling", "Mother", "Father", "Sister", "Son", "Daughter",
+        "Significant Other", "Coworker"};
+
     categories.emplace_back("Relationship", relations, font, sf::Vector2f(700, 300));
     //vector<Product> products;
 
