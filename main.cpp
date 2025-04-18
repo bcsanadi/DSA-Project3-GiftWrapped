@@ -150,8 +150,7 @@ int main() {
     //Placeholder text
     vector<Category> categories;
 
-    vector<string> interests = {"Crafts", "Cars", "Beauty/Wellness", "Electronics", "Travel","Industrial",
-        "Home Decor/Care", "Home Improvement","Pets", "Sports/Outdoors", "Health and Wellness"};
+    vector<string> interests = {"Cars", "Crafts", "Beauty", "Electronics","Fashion", "Health & Wellness", "Home Decor/Care", "Home Improvement", "Industrial","Pets", "Sports/Outdoors", "Travel"};
     categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 300));
 
     vector<string> prices = {"Under $10", "Under $25", "Under $50", "Under $100", "Under $200", "Any Price"};
