@@ -11,7 +11,7 @@ using namespace std;
 
 struct Node {
   Product product;
-  vector<Node*> relatedProducts;
+vector<pair<Node*, int>> relatedProducts;
   Node() = default;
   Node(const Product& product) : product(product) {}
 };
@@ -21,8 +21,9 @@ class Graph {
   map<string, vector<Product>> categoryBuckets;
 public:
   void addNode(const Product& product);
-  void addEdge(const string& from, const string& to);
+  void addEdge(const string& from, const string& to, int weight);
   vector<string> traverse(const vector<string>& userInput);
+  void buildGraph(const vector<Product>& products, Graph& graph, const string& price, const string& age, const string& relationship);
 };
 
 #endif //GRAPH_H
