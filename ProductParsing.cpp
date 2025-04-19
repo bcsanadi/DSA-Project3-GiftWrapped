@@ -181,31 +181,23 @@ vector<Product> Product::filterProducts(const vector<Product>& products, const s
     for (const auto& p : products) {
         try {
             catName = getCategoryName(stoi(p.categoryID));
-        }
-        catch (exception& e) {
-        }
-
-        bool matchesInterest = false;
-        for (const string& cat : interestCategories) {
-            if (cat == catName) {
-                matchesInterest = true;
-                break;
-            }
+        } catch (exception& e) {
+            continue;
         }
 
-        bool matchesAge = false;
-        for (const string& cat : ageCategories) {
-            if (cat == catName) {
-                matchesAge = true;
-                break;
-            }
+        bool matchesInterest = (find(interestCategories.begin(), interestCategories.end(), catName) != interestCategories.end());
+        bool matchesAge = (find(ageCategories.begin(), ageCategories.end(), catName) != ageCategories.end());
+        bool matchesPrice = (p.priceRange == price);
+
+        bool matchesRelationship = true;
+        if (interest == "Fashion") {
+            vector<string> validCategories = RelationshipToCategory[relationship];
+            matchesRelationship = (find(validCategories.begin(), validCategories.end(), catName) != validCategories.end());
         }
 
-        if ((matchesInterest || matchesAge) &&
-            p.priceRange == price &&
-            p.relationship == relationship) {
+        if ((matchesInterest || matchesAge) && matchesPrice && matchesRelationship) {
             filtered.push_back(p);
-            }
+        }
     }
     return filtered;
 }
