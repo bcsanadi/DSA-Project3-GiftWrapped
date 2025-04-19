@@ -77,6 +77,7 @@ struct Category {
             buttons.emplace_back(values[i], font, buttonSize, buttonPos, sf::Color::White, labelPos);
         }
     }
+
     void draw(sf::RenderWindow& window) {
         window.draw(title);
         for (auto& button : buttons)
@@ -93,6 +94,7 @@ struct Category {
             }
         }
     }
+
      string getSelectedValue() const {
         if (selectedIndex != -1)
             return buttons[selectedIndex].label.getString();
@@ -150,7 +152,7 @@ int main() {
 
     vector<Category> categories;
 
-    vector<string> interests = {"Cars", "Crafts", "Beauty", "Electronics","Fashion", "Health & Wellness", "Home Decor/Care", "Home Improvement", "Industrial","Pets", "Sports/Outdoors", "Travel"};
+    vector<string> interests = {"Cars", "Crafts", "Beauty", "Electronics","Fashion", "Health & Wellness", "Home", "Industrial","Pets", "Sports/Outdoors", "Toys/Games", "Travel"};
     categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 275));
 
     vector<string> prices = {"Under $10", "Under $25", "Under $50", "Under $100", "Under $200", "Any Price"};
@@ -188,6 +190,11 @@ int main() {
                                 window.close();
                                 Results.create(sf::VideoMode({1000, 800}), "Gift Wrapped");
 
+                                string selectedInterest = categories[0].getSelectedValue();
+                                string selectedPrice = categories[1].getSelectedValue();
+                                string selectedAge = categories[2].getSelectedValue();
+                                string selectedRelation = categories[3].getSelectedValue();
+
                                 while (Results.isOpen()) {
                                     while (const optional event = Results.pollEvent()) {
                                         if (event->is<sf::Event::Closed>())
@@ -204,15 +211,13 @@ int main() {
                 }
             }
         }
-
         window.clear(pink);
         window.draw(title);
         window.draw(giftIcon);
         window.draw(chooseText);
         generateButton.draw(window);
-        for (auto& category : categories) {
+        for (auto& category : categories)
             category.draw(window);
-        }
         window.display();
     }
     return 0;
