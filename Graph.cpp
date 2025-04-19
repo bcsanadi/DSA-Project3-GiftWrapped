@@ -29,7 +29,7 @@ vector<string> Graph::traverse(const vector<string> &userInput) {
     return result;
 }
 
-//Filter the graph based on user inputted price range, interests, age, and relationship
+//Filter the graph based on user inputted price range, interests, age, and relationships
 vector<Product> filterProducts(const vector<Product>& products, const string& interest, const string& price, const string& age, const string& relationship) {
     vector<Product> filtered;
 
