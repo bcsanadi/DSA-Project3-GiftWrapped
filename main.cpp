@@ -105,6 +105,15 @@ struct Category {
     }
 };
 
+bool allFourOptionsChosen(const vector<Category>& categories) {
+    for (const auto& category : categories) {
+        if (category.getSelectedValue().empty()) {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main() {
     vector<string> fileNames = {
         "amazon_split_aa",
@@ -187,25 +196,29 @@ int main() {
                 if (mouseEvent) {
                     if (mouseEvent->button == sf::Mouse::Button::Left) {
                         sf::Vector2f mousePos = window.mapPixelToCoords(mouseEvent->position);
-                        if (generateButton.contains(mousePos)) {
-                            cout << "Generate button clicked!" << endl;
-                            window.close();
-                            Results.create(sf::VideoMode({1000, 800}), "Gift Wrapped");
-                            while (Results.isOpen()) {
 
-                                while (const optional event = Results.pollEvent()) {
-                                    if (event->is<sf::Event::Closed>()) {
-                                        Results.close();
-                                    }
-                                }
-                                Results.clear(pink);
-                                Results.draw(title);
-                                Results.draw(giftIcon);
-                                Results.display();
-                            }
-                        }
                         for (auto& category : categories) {
                             category.handleClick(mousePos);
+                        }
+
+                        if (generateButton.contains(mousePos)) {
+                            if (allFourOptionsChosen(categories)) {
+                                cout << "Generate button clicked!" << endl;
+                                window.close();
+                                Results.create(sf::VideoMode({1000, 800}), "Gift Wrapped");
+
+                                while (Results.isOpen()) {
+                                    while (const optional event = Results.pollEvent()) {
+                                        if (event->is<sf::Event::Closed>()) {
+                                            Results.close();
+                                        }
+                                    }
+                                    Results.clear(pink);
+                                    Results.draw(title);
+                                    Results.draw(giftIcon);
+                                    Results.display();
+                                }
+                            }
                         }
                     }
                 }
