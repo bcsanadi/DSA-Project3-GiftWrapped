@@ -116,10 +116,10 @@ int main() {
     Product product;
 
     vector<string> fileNames = {
-        "amazon_split_aa",
-        "amazon_split_ab",
-        "amazon_split_ac",
-        "amazon_split_ad"
+        "../amazon_split_aa",
+        "../amazon_split_ab",
+        "../amazon_split_ac",
+        "../amazon_split_ad"
     };
 
     vector<Product> allProducts;
