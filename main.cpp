@@ -3,7 +3,7 @@
 #include "Product.h"
 #include <iostream>
 #include <optional>
-
+#include "Graph.h"
 using namespace std;
 
 sf::Sprite ReadInSprite(sf::Texture& texture, const filesystem::path& filename, int x, int y) {
@@ -111,6 +111,10 @@ bool allFourOptionsChosen(const vector<Category>& categories) {
 }
 
 int main() {
+
+    Graph graph;
+    Product product;
+
     vector<string> fileNames = {
         "amazon_split_aa",
         "amazon_split_ab",
@@ -118,10 +122,12 @@ int main() {
         "amazon_split_ad"
     };
 
+    // Create First Window
     sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
     window.setFramerateLimit(60);
     sf::RenderWindow Results;
 
+    // Create Title text
     sf::Font titleFont;
     if (!titleFont.openFromFile("../Title2.ttf"))
         cout << "Error loading Title2.ttf" << endl;
@@ -138,6 +144,7 @@ int main() {
     title.setPosition({500, 430});
     title.setFillColor(sf::Color::White);
 
+    // Create Subtext
     sf::Font font;
     if (!font.openFromFile("../Options.ttf"))
         cout << "Error loading Options.ttf" << endl;
@@ -150,6 +157,7 @@ int main() {
     chooseText.setPosition({500, 775});
     chooseText.setFillColor(sf::Color::Black);
 
+    // Create Category Buttons
     vector<Category> categories;
 
     vector<string> interests = {"Cars", "Crafts", "Beauty", "Electronics","Fashion", "Health & Wellness", "Home", "Industrial","Pets", "Sports/Outdoors", "Toys/Games", "Travel"};
@@ -170,6 +178,8 @@ int main() {
     sf::Color purple = sf::Color(219, 165, 255);
 
     Button generateButton("Generate \n Results!", font, {180, 60}, {440, 670}, purple, {490, 682});
+
+
     while (window.isOpen()){
         while (const optional event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>())
@@ -194,6 +204,7 @@ int main() {
                                 string selectedPrice = categories[1].getSelectedValue();
                                 string selectedAge = categories[2].getSelectedValue();
                                 string selectedRelation = categories[3].getSelectedValue();
+
 
                                 while (Results.isOpen()) {
                                     while (const optional event = Results.pollEvent()) {
