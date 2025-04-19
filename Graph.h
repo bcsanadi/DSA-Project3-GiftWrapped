@@ -11,7 +11,7 @@ using namespace std;
 
 struct Node {
   Product product;
-vector<pair<Node*, int>> relatedProducts;
+  vector<pair<Node*, int>> relatedProducts;
   Node() = default;
   Node(const Product& product) : product(product) {}
 };
