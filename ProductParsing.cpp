@@ -139,3 +139,16 @@ vector<Product> readProductsFromFile(const string& fileName){
     }
     return products;
 };
+
+//
+string getInterestFromCategoryID(int categoryID) {
+    // find the category name based on the category Id
+    string categoryName = getCategoryName(categoryID);
+
+    // find which intrest group it belongs to
+    for (const auto& [interest, categories] : interestToCategory) {
+        if (find(categories.begin(), categories.end(), categoryName) != categories.end()) {
+            return interest;
+        }
+    }
+}

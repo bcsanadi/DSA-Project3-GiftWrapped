@@ -36,7 +36,7 @@ vector<Product> filterProducts(const vector<Product>& products, const string& in
     for (const auto& p : products) {
         if (p.interest == interest && p.priceRange == price && p.ageGroup == age && p.relationship == relationship) {
             filtered.push_back(p);
-            }
+        }
     }
 
     return filtered;
