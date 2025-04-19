@@ -12,7 +12,7 @@ map<string, vector<string>> interestToCategory = {
     {"Crafts", {"Crafts"}},
     {"Beauty", {"Beauty/Wellness"}},
     {"Electronics", {"Electronics", "Video Games"}},
-    {"Fashion", {"Adult Fashion", "Children's Fashion"}},
+    {"Fashion", {"Men's Fashion", "Women's Fashion", "Children's Fashion"}},
     {"Health and Wellness", {"Health and Wellness"}},
     {"Home Decor and Care", {"Home Decor/Care"}},
     {"Home Improvement", {"Home Improvement"}},
@@ -20,14 +20,27 @@ map<string, vector<string>> interestToCategory = {
     {"Pets", {"Pets"}},
     {"Sports and Outdoors", {"Sports/Outdoors"}},
     {"Travel", {"Travel"}},
-
-
-
 };
 
 map<string, vector<string>> AgeToCategory = {
     {"Baby", {"Baby/Maternity"}},
-    {"Child", {"Children's Fashion", "Kids' Toys", "Kids' Toys", "Children's Fashion"}}
+    {"Toddler", {"Baby/Maternity", "Kids' Toys"}},
+    {"Child", {"Children's Fashion", "Kids' Toys"}},
+    {"Teen/Young Adult", {"Adult Fashion"}},
+    {"Adult", {"Adult Fashion"}},
+    {"Senior", {"Adult Fashion"}},
+};
+
+map<string, vector<string>> RelationshipToCategory = {
+    {"Friend", {"Women's Fashion", "Men's Fashion"}},
+    {"Mother", {"Women's Fashion"}},
+    {"Father", {"Men's Fashion"}},
+    {"Sister", {"Women's Fashion"}},
+    {"Brother", {"Men's Fashion"}},
+    {"Son", {"Men's Fashion"}},
+    {"Daughter", {"Women's Fashion"}},
+    {"Significant Other", {"Women's Fashion", "Men's Fashion"}},
+    {"Coworker", {"Women's Fashion", "Men's Fashion"}},
 };
 
 string getCategoryName(int categoryID) {
@@ -50,8 +63,11 @@ string getCategoryName(int categoryID) {
   else if (categoryID >= 99 && categoryID <= 109)
     return "Travel";
   else if (
-      (categoryID >= 110 && categoryID <= 123)
-  ) return "Adult Fashion";
+      (categoryID == 110 || categoryID == 111 || categoryID == 112 || categoryID == 113 || categoryID == 114)
+  ) return "Men's Fashion";
+  else if (
+      (categoryID == 116 || categoryID == 118 || categoryID == 120 || categoryID == 121 || categoryID == 122 || categoryID == 123)
+  ) return "Women's Fashion";
   else if (categoryID >= 138 && categoryID <= 162)
     return "Industrial";
   else if (
