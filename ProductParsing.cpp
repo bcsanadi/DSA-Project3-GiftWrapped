@@ -169,7 +169,7 @@ string getInterestFromCategoryID(int categoryID) {
 }
 
 // filter the graph based on user inputted price range, interests, age, and relationships
-vector<Product> filterProducts(const vector<Product>& products, const string& interest, const string& price, const string& age, const string& relationship) {
+vector<Product> Product::filterProducts(const vector<Product>& products, const string& interest, const string& price, const string& age, const string& relationship) {
     vector<Product> filtered;
 
     vector<string> interestCategories;

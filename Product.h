@@ -24,6 +24,9 @@ struct Product {
     string ageGroup;
     string interest;
     string relationship;
+
+    static vector<Product> filterProducts(const vector<Product>& products, const string& interest, const string& price, const string& age, const string& relationship);
+
 };
 
 #endif //PRODUCT_H
