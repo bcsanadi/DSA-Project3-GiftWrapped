@@ -145,7 +145,7 @@ vector<Product> readProductsFromFile(const string& fileName){
 
         try {
             product.interest = getCategoryName(stoi(product.categoryID));
-        }  catch (...) {
+        }  catch (exception& e) {
             product.interest = "Unknown";
         }
 
@@ -181,9 +181,13 @@ vector<Product> filterProducts(const vector<Product>& products, const string& in
     vector<string> ageCategories;
     if (AgeToCategory.find(age) != AgeToCategory.end())
         ageCategories = AgeToCategory[age];
-
+    string catName;
     for (const auto& p : products) {
-        string catName = getCategoryName(p.categoryID);
+        try {
+            catName = getCategoryName(stoi(p.categoryID));
+        }
+        catch (exception& e) {
+        }
 
         bool matchesInterest = false;
         for (const string& cat : interestCategories) {
