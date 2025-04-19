@@ -6,10 +6,9 @@
 
 using namespace std;
 
-sf::Sprite ReadInSprite(sf::Texture& texture, const std::filesystem::path& filename, int x, int y) {
-    if (!texture.loadFromFile(filename)) {
-        throw std::runtime_error("Failed to load texture: " + filename.string());
-    }
+sf::Sprite ReadInSprite(sf::Texture& texture, const filesystem::path& filename, int x, int y) {
+    if (!texture.loadFromFile(filename))
+        throw runtime_error("Failed to load texture: " + filename.string());
     sf::Sprite sprite(texture);
     sprite.setPosition(sf::Vector2f(x, y));
     return sprite;
@@ -47,11 +46,10 @@ struct Button {
     void setSelected(bool state) {
         selected = state;
         sf::Color lightBlue = sf::Color(180, 225, 255);
-        if (selected) {
+        if (selected)
             buttonBox.setFillColor(lightBlue);
-        } else {
+        else
             buttonBox.setFillColor(sf::Color::White);
-        }
     }
 };
 
@@ -70,7 +68,6 @@ struct Category {
         sf::Color purple = sf::Color(119, 0, 200);
         title.setFillColor(purple);
 
-
         sf::Vector2f buttonSize = {189, 30};
         float spacing = 10;
 
@@ -82,9 +79,8 @@ struct Category {
     }
     void draw(sf::RenderWindow& window) {
         window.draw(title);
-        for (auto& button : buttons) {
+        for (auto& button : buttons)
             button.draw(window);
-        }
     }
 
     void handleClick(sf::Vector2f mousePos) {
@@ -98,18 +94,16 @@ struct Category {
         }
     }
      string getSelectedValue() const {
-        if (selectedIndex != -1) {
+        if (selectedIndex != -1)
             return buttons[selectedIndex].label.getString();
-        }
         return "";
     }
 };
 
 bool allFourOptionsChosen(const vector<Category>& categories) {
     for (const auto& category : categories) {
-        if (category.getSelectedValue().empty()) {
+        if (category.getSelectedValue().empty())
             return false;
-        }
     }
     return true;
 }
@@ -121,14 +115,14 @@ int main() {
         "amazon_split_ac",
         "amazon_split_ad"
     };
+
     sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
     window.setFramerateLimit(60);
     sf::RenderWindow Results;
 
     sf::Font titleFont;
-    if (!titleFont.openFromFile("../Title2.ttf")) {
+    if (!titleFont.openFromFile("../Title2.ttf"))
         cout << "Error loading Title2.ttf" << endl;
-    }
     sf::Texture giftTexture;
     sf::Sprite giftIcon = ReadInSprite(giftTexture, "../Gifty.png", 410, 80);
     giftIcon.setScale(sf::Vector2f(0.09f, 0.09f));
@@ -143,9 +137,8 @@ int main() {
     title.setFillColor(sf::Color::White);
 
     sf::Font font;
-    if (!font.openFromFile("../Options.ttf")) {
+    if (!font.openFromFile("../Options.ttf"))
         cout << "Error loading Options.ttf" << endl;
-    }
     sf::Text chooseText(font);
     chooseText.setCharacterSize(25);
     chooseText.setString("Choose one option from each category!");
@@ -155,8 +148,6 @@ int main() {
     chooseText.setPosition({500, 775});
     chooseText.setFillColor(sf::Color::Black);
 
-
-    //Placeholder text
     vector<Category> categories;
 
     vector<string> interests = {"Cars", "Crafts", "Beauty", "Electronics","Fashion", "Health & Wellness", "Home Decor/Care", "Home Improvement", "Industrial","Pets", "Sports/Outdoors", "Travel"};
@@ -172,23 +163,15 @@ int main() {
         "Significant Other", "Coworker"};
 
     categories.emplace_back("Relationship", relations, font, sf::Vector2f(700, 275));
-    //vector<Product> products;
-
-    // for (const auto& fileName : fileNames) {
-    //     vector<Product> partial = readProductsFromFile(fileName);
-    //     products.insert(products.end(), partial.begin(), partial.end());
-    // }
 
     sf::Color pink = sf::Color(255, 197, 211);
     sf::Color purple = sf::Color(219, 165, 255);
 
-
     Button generateButton("Generate \n Results!", font, {180, 60}, {440, 670}, purple, {490, 682});
     while (window.isOpen()){
         while (const optional event = window.pollEvent()) {
-            if (event->is<sf::Event::Closed>()) {
+            if (event->is<sf::Event::Closed>())
                 window.close();
-            }
 
             if (event->is<sf::Event::MouseButtonPressed>()) {
             const sf::Event::MouseButtonPressed* mouseEvent = event->getIf<sf::Event::MouseButtonPressed>();
@@ -196,9 +179,8 @@ int main() {
                     if (mouseEvent->button == sf::Mouse::Button::Left) {
                         sf::Vector2f mousePos = window.mapPixelToCoords(mouseEvent->position);
 
-                        for (auto& category : categories) {
+                        for (auto& category : categories)
                             category.handleClick(mousePos);
-                        }
 
                         if (generateButton.contains(mousePos)) {
                             if (allFourOptionsChosen(categories)) {
@@ -208,9 +190,8 @@ int main() {
 
                                 while (Results.isOpen()) {
                                     while (const optional event = Results.pollEvent()) {
-                                        if (event->is<sf::Event::Closed>()) {
+                                        if (event->is<sf::Event::Closed>())
                                             Results.close();
-                                        }
                                     }
                                     Results.clear(pink);
                                     Results.draw(title);
@@ -225,8 +206,6 @@ int main() {
         }
 
         window.clear(pink);
-
-
         window.draw(title);
         window.draw(giftIcon);
         window.draw(chooseText);

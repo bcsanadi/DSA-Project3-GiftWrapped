@@ -46,7 +46,7 @@ string getCategoryName(int categoryID) {
   ) return "Health and Wellness";
   else if (
       categoryID == 217 || categoryID == 218 || (categoryID >= 220 && categoryID <= 240) || categoryID == 266
-  ) return "Kids Toys";
+  ) return "Kids' Toys";
   else if (
       (categoryID >= 240 && categoryID <= 263)
   ) return "Video Games";
@@ -57,9 +57,8 @@ string getCategoryName(int categoryID) {
 vector<Product> readProductsFromFile(const string& fileName){
     vector<Product> products;
     ifstream file(fileName);
-    if(!file.is_open()){
+    if(!file.is_open())
         cout<<"File does not exist"<<endl;
-    }
     string line;
     getline(file,line);
 
@@ -111,9 +110,7 @@ vector<Product> readProductsFromFile(const string& fileName){
         // placeholder for relationship
         product.relationship = "Friend";
 
-
         products.push_back(product);
     }
-
     return products;
 };
