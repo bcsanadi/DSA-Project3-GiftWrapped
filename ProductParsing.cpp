@@ -96,7 +96,7 @@ string getCategoryName(int categoryID) {
   return "Invalid Category";
 }
 
-vector<Product> readProductsFromFile(const string& fileName){
+vector<Product> Product::readProductsFromFile(const string& fileName){
     vector<Product> products;
     ifstream file(fileName);
     if(!file.is_open())

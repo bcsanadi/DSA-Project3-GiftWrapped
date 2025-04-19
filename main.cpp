@@ -4,7 +4,6 @@
 #include <iostream>
 #include <optional>
 #include "Graph.h"
-
 using namespace std;
 
 sf::Sprite ReadInSprite(sf::Texture& texture, const filesystem::path& filename, int x, int y) {
@@ -123,6 +122,13 @@ int main() {
         "amazon_split_ad"
     };
 
+    vector<Product> allProducts;
+
+    for (const auto& fileName : fileNames) {
+        vector<Product> products = product.readProductsFromFile(fileName);
+        allProducts.insert(allProducts.end(), products.begin(), products.end());
+    }
+
     // Create First Window
     sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
     window.setFramerateLimit(60);
@@ -180,6 +186,7 @@ int main() {
 
     Button generateButton("Generate \n Results!", font, {180, 60}, {440, 670}, purple, {490, 682});
 
+
     while (window.isOpen()){
         while (const optional event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>())
@@ -204,6 +211,10 @@ int main() {
                                 string selectedPrice = categories[1].getSelectedValue();
                                 string selectedAge = categories[2].getSelectedValue();
                                 string selectedRelation = categories[3].getSelectedValue();
+
+                                //Filter products and build graph
+                                vector<Product> filteredProducts = product.filterProducts(allProducts, selectedInterest, selectedPrice, selectedAge, selectedRelation);
+                                graph.buildGraph(filteredProducts, graph, selectedPrice, selectedAge, selectedRelation);
 
                                 while (Results.isOpen()) {
                                     while (const optional event = Results.pollEvent()) {

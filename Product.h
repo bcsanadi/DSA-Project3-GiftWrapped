@@ -25,8 +25,8 @@ struct Product {
     string interest;
     string relationship;
 
-    static vector<Product> filterProducts(const vector<Product>& products, const string& interest, const string& price, const string& age, const string& relationship);
-
+     vector<Product> filterProducts(const vector<Product>& products, const string& interest, const string& price, const string& age, const string& relationship);
+     vector<Product> readProductsFromFile(const string& fileName);
 };
 
 #endif //PRODUCT_H
