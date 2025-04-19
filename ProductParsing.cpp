@@ -168,3 +168,43 @@ string getInterestFromCategoryID(int categoryID) {
         }
     }
 }
+
+//Filter the graph based on user inputted price range, interests, age, and relationships
+vector<Product> filterProducts(const vector<Product>& products, const string& interest, const string& price, const string& age, const string& relationship) {
+    vector<Product> filtered;
+
+    vector<string> interestCategories;
+    if (interestToCategory.find(interest) != interestToCategory.end())
+        interestCategories = interestToCategory[interest];
+
+    vector<string> ageCategories;
+    if (AgeToCategory.find(age) != AgeToCategory.end())
+        ageCategories = AgeToCategory[age];
+
+    for (const auto& p : products) {
+        string catName = getCategoryName(p.categoryID);
+
+        bool matchesInterest = false;
+        for (const string& cat : interestCategories) {
+            if (cat == catName) {
+                matchesInterest = true;
+                break;
+            }
+        }
+
+        bool matchesAge = false;
+        for (const string& cat : ageCategories) {
+            if (cat == catName) {
+                matchesAge = true;
+                break;
+            }
+        }
+
+        if ((matchesInterest || matchesAge) &&
+            p.priceRange == price &&
+            p.relationship == relationship) {
+            filtered.push_back(p);
+            }
+    }
+    return filtered;
+}
