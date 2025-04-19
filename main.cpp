@@ -115,19 +115,18 @@ int main() {
     Graph graph;
     Product product;
 
-    vector<string> fileNames = {
+    /* vector<string> fileNames = {
         "../amazon_split_aa",
         "../amazon_split_ab",
         "../amazon_split_ac",
         "../amazon_split_ad"
     };
+*/
+    // vector<Product> allProducts;
 
-    vector<Product> allProducts;
+       vector<Product> products = product.readProductsFromFile("../amazon_products.csv");
 
-    for (const auto& fileName : fileNames) {
-        vector<Product> products = product.readProductsFromFile(fileName);
-        allProducts.insert(allProducts.end(), products.begin(), products.end());
-    }
+
 
     // Create First Window
     sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
@@ -213,7 +212,7 @@ int main() {
                                 string selectedRelation = categories[3].getSelectedValue();
 
                                 //Filter products and build graph
-                                vector<Product> filteredProducts = product.filterProducts(allProducts, selectedInterest, selectedPrice, selectedAge, selectedRelation);
+                                vector<Product> filteredProducts = product.filterProducts(products, selectedInterest, selectedPrice, selectedAge, selectedRelation);
                                 graph.buildGraph(filteredProducts, graph, selectedPrice, selectedAge, selectedRelation);
 
                                 while (Results.isOpen()) {
