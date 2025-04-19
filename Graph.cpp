@@ -17,7 +17,6 @@ void Graph::addEdge(const string& from, const string& to, int weight) {
 
 vector<string> Graph::traverse(const vector<string> &userInput) {
     vector<string> result;
-
     for (const string& asin : userInput) {
         if (graph.find(asin) != graph.end()) {
             for (const auto& neighbor : graph[asin].relatedProducts) {
@@ -29,12 +28,9 @@ vector<string> Graph::traverse(const vector<string> &userInput) {
     return result;
 }
 
-
-
 void Graph::buildGraph(const vector<Product>& products, Graph& graph, const string& price, const string& age, const string& relationship) {
-    for (const auto& p : products) {
+    for (const auto& p : products)
         graph.addNode(p);
-    }
 
     // connect products
     for (int i = 0; i < products.size(); i++) {

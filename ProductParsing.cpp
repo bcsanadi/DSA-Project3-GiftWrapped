@@ -6,7 +6,7 @@
 #include <map>
 using namespace std;
 
-// Based on user Interests
+// based on user Interests
 map<string, vector<string>> interestToCategory = {
     {"Cars", {"Cars"}},
     {"Crafts", {"Crafts"}},
@@ -31,7 +31,6 @@ map<string, vector<string>> AgeToCategory = {
     {"Senior", {"Adult Fashion"}},
 };
 
-//
 map<string, vector<string>> RelationshipToCategory = {
     {"Friend", {"Women's Fashion", "Men's Fashion"}},
     {"Mother", {"Women's Fashion"}},
@@ -157,7 +156,6 @@ vector<Product> readProductsFromFile(const string& fileName){
     return products;
 };
 
-//
 string getInterestFromCategoryID(int categoryID) {
     // find the category name based on the category Id
     string categoryName = getCategoryName(categoryID);
@@ -170,7 +168,7 @@ string getInterestFromCategoryID(int categoryID) {
     }
 }
 
-//Filter the graph based on user inputted price range, interests, age, and relationships
+// filter the graph based on user inputted price range, interests, age, and relationships
 vector<Product> filterProducts(const vector<Product>& products, const string& interest, const string& price, const string& age, const string& relationship) {
     vector<Product> filtered;
 
@@ -181,28 +179,36 @@ vector<Product> filterProducts(const vector<Product>& products, const string& in
     vector<string> ageCategories;
     if (AgeToCategory.find(age) != AgeToCategory.end())
         ageCategories = AgeToCategory[age];
+    string catName;
 
     for (const auto& p : products) {
-        string catName;
         try {
             catName = getCategoryName(stoi(p.categoryID));
-        } catch (exception& e) {
-            continue;
+        }
+        catch (exception& e) {
         }
 
-        bool matchesInterest = (find(interestCategories.begin(), interestCategories.end(), catName) != interestCategories.end());
-        bool matchesAge = (find(ageCategories.begin(), ageCategories.end(), catName) != ageCategories.end());
-        bool matchesPrice = (p.priceRange == price);
-
-        bool matchesRelationship = true;
-        if (interest == "Fashion") {
-            vector<string> validCategories = RelationshipToCategory[relationship];
-            matchesRelationship = (find(validCategories.begin(), validCategories.end(), catName) != validCategories.end());
+        bool matchesInterest = false;
+        for (const string& cat : interestCategories) {
+            if (cat == catName) {
+                matchesInterest = true;
+                break;
+            }
         }
 
-        if ((matchesInterest || matchesAge) && matchesPrice && matchesRelationship) {
+        bool matchesAge = false;
+        for (const string& cat : ageCategories) {
+            if (cat == catName) {
+                matchesAge = true;
+                break;
+            }
+        }
+
+        if ((matchesInterest || matchesAge) &&
+            p.priceRange == price &&
+            p.relationship == relationship) {
             filtered.push_back(p);
-        }
+            }
     }
     return filtered;
 }
