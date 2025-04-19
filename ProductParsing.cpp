@@ -3,7 +3,32 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <map>
 using namespace std;
+
+// Based on user Interests
+map<string, vector<string>> interestToCategory = {
+    {"Cars", {"Cars"}},
+    {"Crafts", {"Crafts"}},
+    {"Beauty", {"Beauty/Wellness"}},
+    {"Electronics", {"Electronics", "Video Games"}},
+    {"Fashion", {"Adult Fashion", "Children's Fashion"}},
+    {"Health and Wellness", {"Health and Wellness"}},
+    {"Home Decor and Care", {"Home Decor/Care"}},
+    {"Home Improvement", {"Home Improvement"}},
+    {"Industrial", {"Industrial"}},
+    {"Pets", {"Pets"}},
+    {"Sports and Outdoors", {"Sports/Outdoors"}},
+    {"Travel", {"Travel"}},
+
+
+
+};
+
+map<string, vector<string>> AgeToCategory = {
+    {"Baby", {"Baby/Maternity"}},
+    {"Child", {"Children's Fashion", "Kids' Toys", "Kids' Toys", "Children's Fashion"}}
+};
 
 string getCategoryName(int categoryID) {
   if (
