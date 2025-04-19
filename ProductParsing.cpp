@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <map>
+
 using namespace std;
 
 // based on user Interests
@@ -148,9 +149,6 @@ vector<Product> readProductsFromFile(const string& fileName){
             product.interest = "Unknown";
         }
 
-        // placeholder for relationship
-        product.relationship = "Friend";
-
         products.push_back(product);
     }
     return products;
@@ -162,9 +160,8 @@ string getInterestFromCategoryID(int categoryID) {
 
     // find which interest group it belongs to
     for (const auto& [interest, categories] : interestToCategory) {
-        if (find(categories.begin(), categories.end(), categoryName) != categories.end()) {
+        if (find(categories.begin(), categories.end(), categoryName) != categories.end())
             return interest;
-        }
     }
 }
 
@@ -179,8 +176,8 @@ vector<Product> Product::filterProducts(const vector<Product>& products, const s
     vector<string> ageCategories;
     if (AgeToCategory.find(age) != AgeToCategory.end())
         ageCategories = AgeToCategory[age];
-    string catName;
 
+    string catName;
     for (const auto& p : products) {
         try {
             catName = getCategoryName(stoi(p.categoryID));
