@@ -115,17 +115,19 @@ int main() {
     Graph graph;
     Product product;
 
-    /* vector<string> fileNames = {
-        "../amazon_split_aa",
-        "../amazon_split_ab",
-        "../amazon_split_ac",
-        "../amazon_split_ad"
+    vector<string> fileNames = {
+        "../amazon_split_aa_new.csv",
+        "../amazon_split_ab_new.csv",
+        "../amazon_split_ac_new.csv",
+        "../amazon_split_ad_new.csv",
     };
-*/
-    // vector<Product> allProducts;
 
-       vector<Product> products = product.readProductsFromFile("../amazon_products.csv");
+    vector<Product> allProducts;
 
+    for (const auto& fileName : fileNames) {
+        vector<Product> products = product.readProductsFromFile("../amazon_products.csv");
+        allProducts.insert(allProducts.end(), products.begin(), products.end());
+    }
 
 
     // Create First Window
@@ -212,7 +214,7 @@ int main() {
                                 string selectedRelation = categories[3].getSelectedValue();
 
                                 //Filter products and build graph
-                                vector<Product> filteredProducts = product.filterProducts(products, selectedInterest, selectedPrice, selectedAge, selectedRelation);
+                                vector<Product> filteredProducts = product.filterProducts(allProducts, selectedInterest, selectedPrice, selectedAge, selectedRelation);
                                 graph.buildGraph(filteredProducts, graph, selectedPrice, selectedAge, selectedRelation);
 
                                 while (Results.isOpen()) {

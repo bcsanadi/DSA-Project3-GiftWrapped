@@ -107,27 +107,19 @@ vector<Product> Product::readProductsFromFile(const string& fileName){
     while(getline(file,line)){
         istringstream ss(line);
         string tokenPrice;
-        string tokenListPrice;
+
         Product product;
         getline(ss, product.asin, ',');
         getline(ss, product.title, ',');
         getline(ss, product.imgurl, ',');
         getline(ss, product.productURL, ',');
-        getline(ss, product.stars, ',');
-        getline(ss, product.reviews, ',');
         getline(ss, tokenPrice, ',');
         try{
             product.price = stod(tokenPrice);
         }
         catch(exception& e){}
-        getline(ss, tokenListPrice, ',');
-        try{
-            product.listPrice = stod(tokenListPrice);
-        }
         catch(exception& e){}
         getline(ss, product.categoryID, ',');
-        getline(ss, product.isBestSeller, ',');
-        getline(ss, product.boughtInLastMonth, ',');
 
         if(product.price <= 10) {
             product.priceRange = "Under $10";
