@@ -27,9 +27,9 @@ map<string, vector<string>> AgeToCategory = {
     {"Baby", {"Baby/Maternity"}},
     {"Toddler", {"Baby/Maternity", "Kids' Toys"}},
     {"Child", {"Children's Fashion", "Kids' Toys"}},
-    {"Teen/Young Adult", {"Adult Fashion"}},
-    {"Adult", {"Adult Fashion"}},
-    {"Senior", {"Adult Fashion"}},
+    {"Teen/Young Adult", {"Men's Fashion", "Women's Fashion", "Cars", "Crafts", "Beauty/Wellness", "Electronics", "Video Games", "Health and Wellness", "Home Decor/Care", "Industrial", "Pets", "Sports/Outdoors", "Travel"}},
+    {"Adult", {"Men's Fashion", "Women's Fashion", "Cars", "Crafts", "Beauty/Wellness", "Electronics", "Video Games", "Health and Wellness", "Home Decor/Care", "Industrial", "Pets", "Sports/Outdoors", "Travel"}},
+    {"Senior", {"Men's Fashion", "Women's Fashion", "Cars", "Crafts", "Beauty/Wellness", "Electronics", "Video Games", "Health and Wellness", "Home Decor/Care", "Industrial", "Pets", "Sports/Outdoors", "Travel"}},
 };
 
 map<string, vector<string>> RelationshipToCategory = {
@@ -170,13 +170,15 @@ vector<Product> Product::filterProducts(const vector<Product>& products, const s
         }
 
 
-        bool matchesRelationship = true;
         if (interest == "Fashion") {
             vector<string> validCategories = RelationshipToCategory[relationship];
-            matchesRelationship = (find(validCategories.begin(), validCategories.end(), catName) != validCategories.end());
+            bool matchesRelationship = (find(validCategories.begin(), validCategories.end(), catName) != validCategories.end());
+            if (matchesRelationship && matchesPrice) {
+                filtered.push_back(p);
+            }
         }
 
-       if ((matchesInterest || matchesAge) && matchesRelationship && matchesPrice) {
+      else if (matchesInterest && matchesAge && matchesPrice) {
             filtered.push_back(p);
         }
     }
