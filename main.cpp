@@ -125,8 +125,7 @@ int main() {
     vector<Product> allProducts;
 
     for (const auto& fileName : fileNames) {
-        vector<Product> products = product.readProductsFromFile("../amazon_products.csv");
-        allProducts.insert(allProducts.end(), products.begin(), products.end());
+        product.readProductsFromFile(fileName, allProducts);
     }
 
 

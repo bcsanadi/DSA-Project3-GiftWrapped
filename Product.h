@@ -22,7 +22,10 @@ struct Product {
     string relationship;
 
      vector<Product> filterProducts(const vector<Product>& products, const string& interest, const string& price, const string& age, const string& relationship);
-     vector<Product> readProductsFromFile(const string& fileName);
+     void readProductsFromFile(const std::string& filename, std::vector<Product>& output);
+    Product(string asin, string title, string imgurl, string productURL, double price, string categoryID)
+    : asin(asin), title(title), imgurl(imgurl), productURL(productURL) ,categoryID(categoryID), price(price) {}
+    Product() = default;
 };
 
 #endif //PRODUCT_H

@@ -96,55 +96,30 @@ string getCategoryName(int categoryID) {
   return "Invalid Category";
 }
 
-vector<Product> Product::readProductsFromFile(const string& fileName){
-    vector<Product> products;
-    ifstream file(fileName);
-    if(!file.is_open())
-        cout<<"File does not exist"<<endl;
-    string line;
-    getline(file,line);
+void Product::readProductsFromFile(const std::string& filename, std::vector<Product>& output) {
+        ifstream file(filename);
+        string line;
 
-    while(getline(file,line)){
-        istringstream ss(line);
-        string tokenPrice;
+        while (std::getline(file, line)) {
+            stringstream ss(line);
+            string asin, title, imgurl, url, priceStr, categoryID;
 
-        Product product;
-        getline(ss, product.asin, ',');
-        getline(ss, product.title, ',');
-        getline(ss, product.imgurl, ',');
-        getline(ss, product.productURL, ',');
-        getline(ss, tokenPrice, ',');
-        try{
-            product.price = stod(tokenPrice);
+            getline(ss, asin, ',');
+            getline(ss, title, ',');
+            getline(ss, imgurl, ',');
+            getline(ss, url, ',');
+            getline(ss, priceStr, ',');
+            getline(ss, categoryID, ',');
+
+            try {
+                double price = std::stod(priceStr);
+            } catch (exception& e) {
+            }
+            Product product(asin, title, imgurl, url, price, categoryID);
+            output.push_back(product);
         }
-        catch(exception& e){}
-        catch(exception& e){}
-        getline(ss, product.categoryID, ',');
-
-        if(product.price <= 10) {
-            product.priceRange = "Under $10";
-        } else if  (product.price <= 25) {
-            product.priceRange = "Under $25";
-        } else if  (product.price <= 50) {
-            product.priceRange = "Under $50";
-        } else if  (product.price <= 100) {
-            product.priceRange = "Under $100";
-        } else if  (product.price <= 200) {
-            product.priceRange = "Under $200";
-        } else {
-            product.priceRange = "Any Price";
-        }
-
-        try {
-            product.interest = getCategoryName(stoi(product.categoryID));
-        }  catch (exception& e) {
-            product.interest = "Unknown";
-        }
-
-        products.push_back(product);
     }
-    return products;
-};
+
 
 string getInterestFromCategoryID(int categoryID) {
     // find the category name based on the category Id
