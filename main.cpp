@@ -176,7 +176,7 @@ cout << allProducts.size() << endl;
     vector<string> ages = {"Baby", "Toddler", "Child", "Teen/Young Adult", "Adult", "Senior"};
     categories.emplace_back("Age Group", ages, font, sf::Vector2f(500, 275));
 
-    vector<string> relations = {"Friend", "Sibling", "Mother", "Father", "Sister", "Son", "Daughter",
+    vector<string> relations = {"Friend", "Mother", "Father", "Sister", "Brother", "Daughter", "Son",
         "Significant Other", "Coworker"};
 
     categories.emplace_back("Relationship", relations, font, sf::Vector2f(700, 275));
