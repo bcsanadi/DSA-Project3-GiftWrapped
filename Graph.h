@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include "Product.h"
+#include <unordered_set>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ class Graph {
 public:
   void addNode(const Product& product);
   void addEdge(const string& from, const string& to, int weight);
-  vector<string> traverse(const vector<string>& userInput);
+  vector<Product> traverse(const vector<string>& userInput);
   void buildGraph(const vector<Product>& products, Graph& graph, const string& price, const string& age, const string& relationship);
 };
 

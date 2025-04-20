@@ -128,7 +128,7 @@ int main() {
         product.readProductsFromFile(fileName, allProducts);
     }
 
-
+cout << allProducts.size() << endl;
     // Create First Window
     sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
     window.setFramerateLimit(60);
@@ -212,11 +212,36 @@ int main() {
                                 string selectedAge = categories[2].getSelectedValue();
                                 string selectedRelation = categories[3].getSelectedValue();
 
+                                vector<string> categoryIDs;
+
                                 //Filter products and build graph
-                                vector<Product> filteredProducts = product.filterProducts(allProducts, selectedInterest, selectedPrice, selectedAge, selectedRelation);
-                                graph.buildGraph(filteredProducts, graph, selectedPrice, selectedAge, selectedRelation);
+                                vector<Product> filtered = Product::filterProducts(allProducts, selectedInterest, selectedPrice, selectedAge, selectedRelation);
+                                cout << "Filtered products size: " << filtered.size() << endl;
+
+                                vector<string> filteredASINs;
+                                for (const auto& p : filtered)
+                                    filteredASINs.push_back(p.asin);
+
+                                vector<Product> relatedTitles = graph.traverse(filteredASINs);
+
+                                cout << "Graph results:" << endl;
+                                for (const Product& p : relatedTitles) {
+                                    cout << p.title << endl;
+                                }
+                                vector<sf::Text> productTexts;
+                                int maxProductsToShow = 15;
+                                float yStart = 200;
+                                for (int i = 0; i < min((int)filtered.size(), maxProductsToShow); ++i) {
+                                    sf::Text productText(font);
+                                    productText.setString(filtered[i].title);
+                                    productText.setCharacterSize(18);
+                                    productText.setFillColor(sf::Color::Black);
+                                    productText.setPosition({100.f, yStart + static_cast<float>(i) * 40.f});
+                                    productTexts.push_back(productText);
+                                }
 
                                 while (Results.isOpen()) {
+
                                     while (const optional event = Results.pollEvent()) {
                                         if (event->is<sf::Event::Closed>())
                                             Results.close();
@@ -224,6 +249,8 @@ int main() {
                                     Results.clear(pink);
                                     Results.draw(title);
                                     Results.draw(giftIcon);
+                                    for (const auto& text : productTexts)
+                                        Results.draw(text);
                                     Results.display();
                                 }
                             }

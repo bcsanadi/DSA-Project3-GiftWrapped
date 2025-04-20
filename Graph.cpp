@@ -1,5 +1,6 @@
 #include "Graph.h"
 
+
 void Graph::addNode(const Product& product) {
     if (graph.find(product.asin) == graph.end())
         graph[product.asin] = Node{product};
@@ -15,13 +16,18 @@ void Graph::addEdge(const string& from, const string& to, int weight) {
     }
 }
 
-vector<string> Graph::traverse(const vector<string> &userInput) {
-    vector<string> result;
+vector<Product> Graph::traverse(const vector<string>& userInput) {
+    vector<Product> result;
+    unordered_set<string> visited;
+
     for (const string& asin : userInput) {
         if (graph.find(asin) != graph.end()) {
             for (const auto& neighbor : graph[asin].relatedProducts) {
                 Node* node = neighbor.first;
-                result.push_back(node->product.title);
+                if (visited.find(node->product.asin) == visited.end()) {
+                    result.push_back(node->product);
+                    visited.insert(node->product.asin);
+                }
             }
         }
     }
