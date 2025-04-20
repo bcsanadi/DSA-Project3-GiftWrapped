@@ -154,7 +154,21 @@ vector<Product> Product::filterProducts(const vector<Product>& products, const s
 
         bool matchesInterest = (find(interestCategories.begin(), interestCategories.end(), catName) != interestCategories.end());
         bool matchesAge = (find(ageCategories.begin(), ageCategories.end(), catName) != ageCategories.end());
-        //bool matchesPrice = (p.priceRange == price);
+        bool matchesPrice = false;
+        if (price == "Under $10" && p.price < 10) {
+            matchesPrice = true;
+        } else if (price == "Under $25" && p.price < 25) {
+            matchesPrice = true;
+        } else if (price == "Under $50" && p.price < 50) {
+            matchesPrice = true;
+        } else if (price == "Under $100" && p.price < 100) {
+            matchesPrice = true;
+        } else if (price == "Under $200" && p.price < 200) {
+            matchesPrice = true;
+        } else if (price == "Any Price") {
+            matchesPrice = true;
+        }
+
 
         bool matchesRelationship = true;
         if (interest == "Fashion") {
@@ -162,7 +176,7 @@ vector<Product> Product::filterProducts(const vector<Product>& products, const s
             matchesRelationship = (find(validCategories.begin(), validCategories.end(), catName) != validCategories.end());
         }
 
-       if ((matchesInterest || matchesAge) && matchesRelationship) {
+       if ((matchesInterest || matchesAge) && matchesRelationship && matchesPrice) {
             filtered.push_back(p);
         }
     }
