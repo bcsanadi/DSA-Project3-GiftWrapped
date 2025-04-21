@@ -230,13 +230,13 @@ cout << allProducts.size() << endl;
                                 }
                                 vector<sf::Text> productTexts;
                                 int maxProductsToShow = 15;
-                                float yStart = 200;
+                                float yStart = 250;
                                 for (int i = 0; i < min((int)filtered.size(), maxProductsToShow); ++i) {
                                     sf::Text productText(font);
                                     productText.setString(filtered[i].title);
-                                    productText.setCharacterSize(18);
+                                    productText.setCharacterSize(15);
                                     productText.setFillColor(sf::Color::Black);
-                                    productText.setPosition({100.f, yStart + static_cast<float>(i) * 40.f});
+                                    productText.setPosition({50.f, yStart + static_cast<float>(i) * 40.f});
                                     productTexts.push_back(productText);
                                 }
 
