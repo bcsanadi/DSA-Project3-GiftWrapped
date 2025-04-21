@@ -3,7 +3,6 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <algorithm>
 #include <optional>
 #include "Product.h"
 #include "Graph.h"
@@ -143,7 +142,6 @@ int main() {
     vector<Product> allProducts;
     for (const auto& fileName : fileNames)
         product.readProductsFromFile(fileName, allProducts);
-    cout << allProducts.size() << endl;
 
     // creates main selection window
     RenderWindow window(VideoMode({1000, 800}), "Gift Wrapped");
@@ -157,7 +155,7 @@ int main() {
 
     // loads and sets gift icon
     Texture giftTexture;
-    :Sprite giftIcon = ReadInSprite(giftTexture, "../Gifty.png", 410, 80);
+    Sprite giftIcon = ReadInSprite(giftTexture, "../Gifty.png", 410, 80);
     giftIcon.setScale(Vector2f(0.09f, 0.09f));
 
     // title text
