@@ -1,6 +1,5 @@
 #include "Graph.h"
 
-
 void Graph::addNode(const Product& product) {
     if (graph.find(product.asin) == graph.end())
         graph[product.asin] = Node{product};
@@ -55,4 +54,3 @@ void Graph::buildGraph(const vector<Product>& products, Graph& graph, const stri
         }
     }
 }
-

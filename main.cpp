@@ -4,6 +4,7 @@
 #include <iostream>
 #include <optional>
 #include "Graph.h"
+
 using namespace std;
 
 sf::Sprite ReadInSprite(sf::Texture& texture, const filesystem::path& filename, int x, int y) {
@@ -123,18 +124,16 @@ int main() {
     };
 
     vector<Product> allProducts;
-
-    for (const auto& fileName : fileNames) {
+    for (const auto& fileName : fileNames)
         product.readProductsFromFile(fileName, allProducts);
-    }
 
 cout << allProducts.size() << endl;
-    // Create First Window
+    // create first window
     sf::RenderWindow window(sf::VideoMode({1000, 800}), "Gift Wrapped");
     window.setFramerateLimit(60);
     sf::RenderWindow Results;
 
-    // Create Title text
+    // create title text
     sf::Font titleFont;
     if (!titleFont.openFromFile("../Title2.ttf"))
         cout << "Error loading Title2.ttf" << endl;
@@ -151,7 +150,7 @@ cout << allProducts.size() << endl;
     title.setPosition({500, 430});
     title.setFillColor(sf::Color::White);
 
-    // Create Subtext
+    // create subtext
     sf::Font font;
     if (!font.openFromFile("../Options.ttf"))
         cout << "Error loading Options.ttf" << endl;
@@ -164,7 +163,7 @@ cout << allProducts.size() << endl;
     chooseText.setPosition({500, 775});
     chooseText.setFillColor(sf::Color::Black);
 
-    // Create Category Buttons
+    // create category buttons
     vector<Category> categories;
 
     vector<string> interests = {"Cars", "Crafts", "Beauty", "Electronics","Fashion", "Health/Wellness", "Home", "Industrial","Pets", "Sports/Outdoors", "Toys/Games", "Travel"};
@@ -214,7 +213,7 @@ cout << allProducts.size() << endl;
 
                                 vector<string> categoryIDs;
 
-                                //Filter products and build graph
+                                // filter products and build graph
                                 vector<Product> filtered = Product::filterProducts(allProducts, selectedInterest, selectedPrice, selectedAge, selectedRelation);
                                 cout << "Filtered products size: " << filtered.size() << endl;
 
@@ -223,11 +222,9 @@ cout << allProducts.size() << endl;
                                     filteredASINs.push_back(p.asin);
 
                                 vector<Product> relatedTitles = graph.traverse(filteredASINs);
-
-                                cout << "Graph results:" << endl;
-                                for (const Product& p : relatedTitles) {
+                                for (const Product& p : relatedTitles)
                                     cout << p.title << endl;
-                                }
+
                                 vector<sf::Text> productTexts;
                                 int maxProductsToShow = 15;
                                 float yStart = 250;
@@ -241,7 +238,6 @@ cout << allProducts.size() << endl;
                                 }
 
                                 while (Results.isOpen()) {
-
                                     while (const optional event = Results.pollEvent()) {
                                         if (event->is<sf::Event::Closed>())
                                             Results.close();
