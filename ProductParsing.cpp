@@ -14,8 +14,8 @@ map<string, vector<string>> interestToCategory = {
     {"Beauty", {"Beauty/Wellness"}},
     {"Electronics", {"Electronics", "Video Games"}},
     {"Fashion", {"Men's Fashion", "Women's Fashion", "Children's Fashion"}},
-    {"Health/Wellness", {"Health and Wellness"}},
-    {"Home", {"Home Decor/Care"}},
+    {"Health/Wellness", {"Health/Wellness"}},
+    {"Home", {"Home"}},
     {"Home Improvement", {"Home Improvement"}},
     {"Industrial", {"Industrial"}},
     {"Pets", {"Pets"}},
@@ -28,9 +28,9 @@ map<string, vector<string>> AgeToCategory = {
     {"Baby", {"Baby/Maternity"}},
     {"Toddler", {"Baby/Maternity", "Kids' Toys"}},
     {"Child", {"Children's Fashion", "Kids' Toys"}},
-    {"Teen/Young Adult", {"Men's Fashion", "Women's Fashion", "Cars", "Crafts", "Beauty/Wellness", "Electronics", "Video Games", "Health and Wellness", "Home Decor/Care", "Industrial", "Pets", "Sports/Outdoors", "Travel"}},
-    {"Adult", {"Men's Fashion", "Women's Fashion", "Cars", "Crafts", "Beauty/Wellness", "Electronics", "Video Games", "Health and Wellness", "Home Decor/Care", "Industrial", "Pets", "Sports/Outdoors", "Travel"}},
-    {"Senior", {"Men's Fashion", "Women's Fashion", "Cars", "Crafts", "Beauty/Wellness", "Electronics", "Video Games", "Health and Wellness", "Home Decor/Care", "Industrial", "Pets", "Sports/Outdoors", "Travel"}},
+    {"Teen/Young Adult", {"Men's Fashion", "Women's Fashion", "Cars", "Crafts", "Beauty/Wellness", "Electronics", "Video Games", "Health/Wellness", "Home", "Industrial", "Pets", "Sports/Outdoors", "Travel"}},
+    {"Adult", {"Men's Fashion", "Women's Fashion", "Cars", "Crafts", "Beauty/Wellness", "Electronics", "Video Games", "Health/Wellness", "Home", "Industrial", "Pets", "Sports/Outdoors", "Travel"}},
+    {"Senior", {"Men's Fashion", "Women's Fashion", "Cars", "Crafts", "Beauty/Wellness", "Electronics", "Video Games", "Health/Wellness", "Home", "Industrial", "Pets", "Sports/Outdoors", "Travel"}},
 };
 
 map<string, vector<string>> RelationshipToCategory = {
@@ -74,7 +74,7 @@ string getCategoryName(int categoryID) {
     return "Industrial";
   else if (
       categoryID == 124 || (categoryID >= 163 && categoryID <= 176) || (categoryID >= 185 && categoryID <= 197)
-  ) return "Home Decor/Care";
+  ) return "Home";
   else if (
       (categoryID >= 201 && categoryID <= 215)
   ) return "Home Improvement";
@@ -86,7 +86,7 @@ string getCategoryName(int categoryID) {
   ) return "Sports/Outdoors";
   else if (
       (categoryID >= 126 && categoryID <= 131) || categoryID == 133 || categoryID == 134 || categoryID == 135
-  ) return "Health and Wellness";
+  ) return "Health/Wellness";
   else if (
       categoryID == 217 || categoryID == 218 || (categoryID >= 220 && categoryID <= 240) || categoryID == 266
   ) return "Kids' Toys";

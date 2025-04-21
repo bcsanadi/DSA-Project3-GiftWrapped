@@ -167,7 +167,7 @@ cout << allProducts.size() << endl;
     // Create Category Buttons
     vector<Category> categories;
 
-    vector<string> interests = {"Cars", "Crafts", "Beauty", "Electronics","Fashion", "Health & Wellness", "Home", "Industrial","Pets", "Sports/Outdoors", "Toys/Games", "Travel"};
+    vector<string> interests = {"Cars", "Crafts", "Beauty", "Electronics","Fashion", "Health/Wellness", "Home", "Industrial","Pets", "Sports/Outdoors", "Toys/Games", "Travel"};
     categories.emplace_back("Interest", interests, font, sf::Vector2f(100, 275));
 
     vector<string> prices = {"Under $10", "Under $25", "Under $50", "Under $100", "Under $200", "Any Price"};
