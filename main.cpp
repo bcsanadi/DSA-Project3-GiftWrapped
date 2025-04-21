@@ -11,7 +11,7 @@
 using namespace std;
 using namespace sf;
 
-// load texture from file and sets position
+// loads texture from file and sets position
 Sprite ReadInSprite(Texture& texture, const filesystem::path& filename, int x, int y) {
     if (!texture.loadFromFile(filename))
         throw runtime_error("Failed to load texture: " + filename.string());
@@ -42,18 +42,18 @@ struct Button {
         label.setPosition(labelPosition);
     }
 
-    // render button and label
+    // renders button and label
     void draw(RenderWindow& window) {
         window.draw(buttonBox);
         window.draw(label);
     }
 
-    // check if button contains given point
+    // checks if button contains given point
     bool contains(Vector2f point) const {
         return buttonBox.getGlobalBounds().contains(point);
     }
 
-    // update visual appearance based on selection state
+    // updates visual appearance based on selection state
     void setSelected(bool state) {
         selected = state;
         Color lightBlue = Color(180, 225, 255);
@@ -91,14 +91,14 @@ struct Category {
         }
     }
 
-    // render title and buttons
+    // renders title and buttons
     void draw(RenderWindow& window) {
         window.draw(title);
         for (auto& button : buttons)
             button.draw(window);
     }
 
-    // handle mouse clicks to select a button within a category
+    // handles mouse clicks to select a button within a category
     void handleClick(Vector2f mousePos) {
         for (int i = 0; i < buttons.size(); i++) {
             if (buttons[i].contains(mousePos)) {
@@ -110,7 +110,7 @@ struct Category {
         }
     }
 
-    // return selected button's label
+    // returns selected button's label
      string getSelectedValue() const {
         if (selectedIndex != -1)
             return buttons[selectedIndex].label.getString();
@@ -118,7 +118,7 @@ struct Category {
     }
 };
 
-// check if every category has a selected value
+// checks if every category has a selected value
 bool allFourOptionsChosen(const vector<Category>& categories) {
     for (const auto& category : categories) {
         if (category.getSelectedValue().empty())
@@ -132,7 +132,7 @@ int main() {
     Graph graph;
     Product product;
 
-    // load product data from CSV files
+    // loads product data from CSV files
     vector<string> fileNames = {
         "../amazon_split_aa_new.csv",
         "../amazon_split_ab_new.csv",
@@ -145,7 +145,7 @@ int main() {
         product.readProductsFromFile(fileName, allProducts);
     cout << allProducts.size() << endl;
 
-    // create main selection window
+    // creates main selection window
     RenderWindow window(VideoMode({1000, 800}), "Gift Wrapped");
     window.setFramerateLimit(60);
     RenderWindow Results;
@@ -155,7 +155,7 @@ int main() {
     if (!titleFont.openFromFile("../Title2.ttf"))
         cout << "Error loading Title2.ttf" << endl;
 
-    // load and set gift icon
+    // loads and sets gift icon
     Texture giftTexture;
     :Sprite giftIcon = ReadInSprite(giftTexture, "../Gifty.png", 410, 80);
     giftIcon.setScale(Vector2f(0.09f, 0.09f));
@@ -184,7 +184,7 @@ int main() {
     chooseText.setPosition({500, 775});
     chooseText.setFillColor(Color::Black);
 
-    // create categories and options
+    // creates categories and options
     vector<Category> categories;
 
     vector<string> interests = {"Cars", "Crafts", "Beauty", "Electronics","Fashion", "Health/Wellness", "Home", "Industrial","Pets", "Sports/Outdoors", "Toys/Games", "Travel"};
@@ -200,7 +200,7 @@ int main() {
         "Significant Other", "Coworker"};
     categories.emplace_back("Relationship", relations, font, Vector2f(700, 275));
 
-    // create generate button
+    // creates generate button
     Color pink = Color(255, 197, 211);
     Color purple = Color(219, 165, 255);
     Button generateButton("Generate \n Results!", font, {180, 60}, {440, 670}, purple, {490, 682});
@@ -211,24 +211,24 @@ int main() {
             if (event->is<Event::Closed>())
                 window.close();
 
-            // handle mouse click
+            // handles mouse click
             if (event->is<Event::MouseButtonPressed>()) {
             const Event::MouseButtonPressed* mouseEvent = event->getIf<Event::MouseButtonPressed>();
                 if (mouseEvent) {
                     if (mouseEvent->button == Mouse::Button::Left) {
                         Vector2f mousePos = window.mapPixelToCoords(mouseEvent->position);
 
-                        // check category button clicks
+                        // checks category button clicks
                         for (auto& category : categories)
                             category.handleClick(mousePos);
 
-                        // handle generate button
+                        // handles generate button
                         if (generateButton.contains(mousePos)) {
                             if (allFourOptionsChosen(categories)) {
                                 window.close();
                                 Results.create(VideoMode({1000, 800}), "Gift Wrapped");
 
-                                // retrieve selections
+                                // retrieves selections
                                 string selectedInterest = categories[0].getSelectedValue();
                                 string selectedPrice = categories[1].getSelectedValue();
                                 string selectedAge = categories[2].getSelectedValue();
@@ -236,10 +236,10 @@ int main() {
 
                                 vector<string> categoryIDs;
 
-                                // filter products based on selected criteria
+                                // filters products based on selected criteria
                                 vector<Product> filtered = Product::filterProducts(allProducts, selectedInterest, selectedPrice, selectedAge, selectedRelation);
 
-                                // traverse graph to get related product titles
+                                // traverses graph to get related product titles
                                 vector<string> filteredASINs;
                                 for (const auto& p : filtered)
                                     filteredASINs.push_back(p.asin);
@@ -268,13 +268,13 @@ int main() {
                                 const float maxScroll = static_cast<float>(max(0, (int)filtered.size() - maxProductsToShow)) * scrollStep;
                                 const float xScrollStep = 40.f;
 
-                                // display results window
+                                // displays results window
                                 while (Results.isOpen()) {
                                     while (const optional event = Results.pollEvent()) {
                                         if (event->is<Event::Closed>())
                                             Results.close();
 
-                                        // handle mouse wheel scrolling
+                                        // handles mouse wheel scrolling
                                         if (event->is<Event::MouseWheelScrolled>()) {
                                             auto scroll = event->getIf<Event::MouseWheelScrolled>();
                                             if (scroll) {
@@ -295,29 +295,29 @@ int main() {
                                         }
                                     }
 
-                                    // clear results window
+                                    // clears results window
                                     Results.clear(pink);
 
-                                    // draw title and gift icon
+                                    // draws title and gift icon
                                     Results.draw(title);
                                     Results.draw(giftIcon);
 
-                                    // loop through filtered products and draw with adjusted scroll positions
+                                    // loops through filtered products and draw with adjusted scroll positions
                                     for (size_t i = 0; i < productTexts.size(); ++i) {
                                         Text text = productTexts[i];
 
-                                        // get original position and apply scroll offsets
+                                        // gets original position and applies scroll offsets
                                         Vector2f pos = text.getPosition();
                                         pos.y = 250 + static_cast<float>(i) * 40.f - scrollOffset;
                                         pos.x -= xOffset;
                                         text.setPosition(pos);
 
-                                        // draw text if it is within the visible screen area
+                                        // draws text if it is within the visible screen area
                                         if (pos.y > 200 && pos.y < 800)
                                             Results.draw(text);
                                     }
 
-                                    // display final frame
+                                    // displays final frame
                                     Results.display();
                                 }
                             }
@@ -327,20 +327,20 @@ int main() {
             }
         }
 
-        // clear screen
+        // clears screen
         window.clear(pink);
 
-        // draw UI elements
+        // draws UI elements
         window.draw(title);
         window.draw(giftIcon);
         window.draw(chooseText);
         generateButton.draw(window);
 
-        // draw category buttons
+        // draws category buttons
         for (auto& category : categories)
             category.draw(window);
 
-        // display everything
+        // displays everything
         window.display();
     }
 

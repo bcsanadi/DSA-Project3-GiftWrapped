@@ -20,6 +20,7 @@ struct Node {
 class Graph {
   map<string, Node> graph;
   map<string, vector<Product>> categoryBuckets;
+
 public:
   void addNode(const Product& product);
   void addEdge(const string& from, const string& to, int weight);
