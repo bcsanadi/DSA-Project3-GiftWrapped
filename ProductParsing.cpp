@@ -14,12 +14,13 @@ map<string, vector<string>> interestToCategory = {
     {"Beauty", {"Beauty/Wellness"}},
     {"Electronics", {"Electronics", "Video Games"}},
     {"Fashion", {"Men's Fashion", "Women's Fashion", "Children's Fashion"}},
-    {"Health and Wellness", {"Health and Wellness"}},
-    {"Home Decor and Care", {"Home Decor/Care"}},
+    {"Health/Wellness", {"Health and Wellness"}},
+    {"Home", {"Home Decor/Care"}},
     {"Home Improvement", {"Home Improvement"}},
     {"Industrial", {"Industrial"}},
     {"Pets", {"Pets"}},
-    {"Sports and Outdoors", {"Sports/Outdoors"}},
+    {"Sports/Outdoors", {"Sports/Outdoors"}},
+    { "Toys/Games", {"Kids' Toys", "Video Games"}},
     {"Travel", {"Travel"}},
 };
 
