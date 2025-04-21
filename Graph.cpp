@@ -55,3 +55,4 @@ void Graph::buildGraph(const vector<Product>& products, Graph& graph, const stri
         }
     }
 }
+

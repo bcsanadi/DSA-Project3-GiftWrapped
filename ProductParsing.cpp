@@ -100,23 +100,47 @@ void Product::readProductsFromFile(const std::string& filename, std::vector<Prod
         ifstream file(filename);
         string line;
 
-        while (std::getline(file, line)) {
-            stringstream ss(line);
-            string asin, title, imgurl, url, priceStr, categoryID;
 
-            getline(ss, asin, ',');
+        while (std::getline(file, line)) {
+            vector<string> fields;
+            string field;
+            bool inQuotes = false;
+
+            for (size_t i = 0; i < line.size(); i++) {
+                char c = line[i];
+
+                if (c == '"') {
+                    inQuotes = !inQuotes;
+                } else if (c == ',' && !inQuotes) {
+                    fields.push_back(field);
+                    field.clear();
+                } else {
+                    field += c;
+                }
+            }
+            fields.push_back(field);
+
+            if (fields.size() != 6) {
+                cerr << "Malformed line: " << line << endl;
+                continue;
+            }
+
+            /*getline(ss, asin, ',');
             getline(ss, title, ',');
             getline(ss, imgurl, ',');
             getline(ss, url, ',');
             getline(ss, priceStr, ',');
-            getline(ss, categoryID, ',');
+            getline(ss, categoryID, ',');*/
 
             try {
-                double price = std::stod(priceStr);
+                double price = std::stod(fields[4]);
+                Product product(fields[0], fields[1], fields[2], fields[3], price, fields[5]);
+                output.push_back(product);
             } catch (exception& e) {
+                cerr << "Invalid price in line: " << line << endl;
             }
-            Product product(asin, title, imgurl, url, price, categoryID);
-            output.push_back(product);
+            /*Product product(asin, title, imgurl, url, price, categoryID);
+            output.push_back(product);*/
         }
     }
 
@@ -178,7 +202,7 @@ vector<Product> Product::filterProducts(const vector<Product>& products, const s
             }
         }
 
-      else if (matchesInterest && matchesAge && matchesPrice) {
+        else if (matchesInterest && matchesAge && matchesPrice) {
             filtered.push_back(p);
         }
     }
