@@ -1,13 +1,13 @@
 #include "Product.h"
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include <vector>
 #include <map>
 
 using namespace std;
 
-// based on user interests
+// map user interests to product categories
 map<string, vector<string>> interestToCategory = {
     {"Cars", {"Cars"}},
     {"Crafts", {"Crafts"}},
@@ -23,6 +23,7 @@ map<string, vector<string>> interestToCategory = {
     {"Travel", {"Travel"}},
 };
 
+// map user age groups to product categories
 map<string, vector<string>> AgeToCategory = {
     {"Baby", {"Baby/Maternity"}},
     {"Toddler", {"Baby/Maternity", "Kids' Toys"}},
@@ -32,6 +33,7 @@ map<string, vector<string>> AgeToCategory = {
     {"Senior", {"Men's Fashion", "Women's Fashion", "Cars", "Crafts", "Beauty/Wellness", "Electronics", "Video Games", "Health/Wellness", "Home", "Industrial", "Pets", "Sports/Outdoors", "Travel"}},
 };
 
+// map relationships to fashion category products
 map<string, vector<string>> RelationshipToCategory = {
     {"Friend", {"Women's Fashion", "Men's Fashion"}},
     {"Mother", {"Women's Fashion"}},
@@ -44,6 +46,7 @@ map<string, vector<string>> RelationshipToCategory = {
     {"Coworker", {"Women's Fashion", "Men's Fashion"}},
 };
 
+// return category name correlating to category IDs from dataset
 string getCategoryName(int categoryID) {
   if (
       (categoryID >= 1 && categoryID <= 13) || categoryID == 137 || categoryID == 177
@@ -96,7 +99,8 @@ string getCategoryName(int categoryID) {
   return "Invalid Category";
 }
 
-void Product::readProductsFromFile(const std::string& filename, std::vector<Product>& output) {
+// read product data from CSV and populates output
+void Product::readProductsFromFile(const string& filename, vector<Product>& output) {
         ifstream file(filename);
         string line;
 
@@ -124,7 +128,7 @@ void Product::readProductsFromFile(const std::string& filename, std::vector<Prod
             }
 
             try {
-                double price = std::stod(fields[4]);
+                double price = stod(fields[4]);
                 Product product(fields[0], fields[1], fields[2], fields[3], price, fields[5]);
                 output.push_back(product);
             } catch (exception& e) {
@@ -132,7 +136,7 @@ void Product::readProductsFromFile(const std::string& filename, std::vector<Prod
         }
     }
 
-
+// return interest category based on product category ID
 string getInterestFromCategoryID(int categoryID) {
     // find the category name based on the category Id
     string categoryName = getCategoryName(categoryID);
@@ -144,7 +148,7 @@ string getInterestFromCategoryID(int categoryID) {
     }
 }
 
-// filter the graph based on user inputted price range, interests, age, and relationships
+// filter products by user interest, price, age, and relationship
 vector<Product> Product::filterProducts(const vector<Product>& products, const string& interest, const string& price, const string& age, const string& relationship) {
     vector<Product> filtered;
 
@@ -164,6 +168,7 @@ vector<Product> Product::filterProducts(const vector<Product>& products, const s
             continue;
         }
 
+        // check if product matches interest, age, and price
         bool matchesInterest = (find(interestCategories.begin(), interestCategories.end(), catName) != interestCategories.end());
         bool matchesAge = (find(ageCategories.begin(), ageCategories.end(), catName) != ageCategories.end());
         bool matchesPrice = false;
@@ -181,7 +186,7 @@ vector<Product> Product::filterProducts(const vector<Product>& products, const s
             matchesPrice = true;
         }
 
-
+        // handle fashion product outputs based on inputted relationship
         if (interest == "Fashion") {
             vector<string> validCategories = RelationshipToCategory[relationship];
             bool matchesRelationship = (find(validCategories.begin(), validCategories.end(), catName) != validCategories.end());
