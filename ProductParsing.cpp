@@ -187,13 +187,25 @@ vector<Product> Product::filterProducts(const vector<Product>& products, const s
         }
 
         // handles fashion product outputs based on inputted relationship
-        if (interest == "Fashion") {
+        if (interest == "Fashion" && (age == "Teen/Young Adult" || age == "Adult" || age == "Senior")) {
             vector<string> validCategories = RelationshipToCategory[relationship];
             bool matchesRelationship = (find(validCategories.begin(), validCategories.end(), catName) != validCategories.end());
             if (matchesRelationship && matchesPrice) {
                 filtered.push_back(p);
             }
         }
+
+        else if (interest == "Fashion" && (age == "Child")) {
+            if (catName == "Children's Fashion" && matchesPrice) {
+                filtered.push_back(p);
+            }
+        }
+        else if (interest == "Fashion" && (age == "Baby" || age == "Toddler")) {
+            if (catName == "Baby/Maternity" && matchesPrice) {
+                filtered.push_back(p);
+            }
+        }
+
 
         else if (matchesInterest && matchesAge && matchesPrice) {
             filtered.push_back(p);
