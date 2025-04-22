@@ -195,17 +195,19 @@ vector<Product> Product::filterProducts(const vector<Product>& products, const s
             }
         }
 
+        // handles fashion product outputs for children
         else if (interest == "Fashion" && (age == "Child")) {
             if (catName == "Children's Fashion" && matchesPrice) {
                 filtered.push_back(p);
             }
         }
+
+        // handles fashion product outputs for baby and toddler
         else if (interest == "Fashion" && (age == "Baby" || age == "Toddler")) {
             if (catName == "Baby/Maternity" && matchesPrice) {
                 filtered.push_back(p);
             }
         }
-
 
         else if (matchesInterest && matchesAge && matchesPrice) {
             filtered.push_back(p);
