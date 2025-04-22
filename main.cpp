@@ -140,6 +140,7 @@ int main() {
     };
 
     vector<Product> allProducts;
+    cout << allProducts.size() << endl;
     for (const auto& fileName : fileNames)
         product.readProductsFromFile(fileName, allProducts);
 
