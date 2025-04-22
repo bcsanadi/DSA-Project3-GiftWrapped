@@ -1,6 +1,7 @@
 Instructions for Running Our Code:
 
-1. Download the following files:
+1. Download SFML version 3.0.
+2. Download the following files:
    * amazon_aa_new.csv
    * amazon_ab_new.csv
    * amazon_ac_new.csv
@@ -14,9 +15,8 @@ Instructions for Running Our Code:
    * Graph.cpp
    * Graph.h
    * Product.h
-
-2. Click run.
-3. Select one box from each of the 4 categories.
-4. Click the "Generate Results" button.
-5. Scroll up/down and left/right to see all results.
-6. Have fun gift-giving!
+3. Click run.
+4. Select one box from each of the 4 categories.
+5. Click the "Generate Results" button.
+6. Scroll up/down and left/right to see all results.
+7. Have fun gift-giving!

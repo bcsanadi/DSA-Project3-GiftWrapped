@@ -140,6 +140,7 @@ int main() {
     };
 
     vector<Product> allProducts;
+    cout << allProducts.size() << endl;
     for (const auto& fileName : fileNames)
         product.readProductsFromFile(fileName, allProducts);
 
@@ -236,6 +237,7 @@ int main() {
 
                                 // filters products based on selected criteria
                                 vector<Product> filtered = Product::filterProducts(allProducts, selectedInterest, selectedPrice, selectedAge, selectedRelation);
+                                cout << filtered.size() << endl;
 
                                 // traverses graph to get related product titles
                                 vector<string> filteredASINs;
