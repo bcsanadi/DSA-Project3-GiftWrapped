@@ -140,9 +140,9 @@ int main() {
     };
 
     vector<Product> allProducts;
-    cout << allProducts.size() << endl;
     for (const auto& fileName : fileNames)
         product.readProductsFromFile(fileName, allProducts);
+    cout << allProducts.size() << endl;
 
     // creates main selection window
     RenderWindow window(VideoMode({1000, 800}), "Gift Wrapped");
